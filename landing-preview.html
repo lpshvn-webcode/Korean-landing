@@ -24,33 +24,40 @@
 <style>
   .kr-wrap * { box-sizing: border-box; }
   .kr-wrap {
-    --kr-bg: #F2F7FF;
-    --kr-ink: #0F172A;
-    --kr-purple: #7B5CFF;
-    --kr-purple-soft: #DCEBFF;
-    --kr-muted: #475569;
-    --kr-muted2: #64748B;
+    /* Палитра в духе флага Кореи: тёмно-синий как основной, красный — акцент на CTA/хайлайтах */
+    --kr-bg: #F4F6FB;
+    --kr-ink: #0B1730;
+    --kr-navy: #16295E;
+    --kr-navy-deep: #0A1638;
+    --kr-navy-soft: #E6EAF6;
+    --kr-red: #D0263B;
+    --kr-red-deep: #A81F2C;
+    --kr-red-soft: #FBE7E9;
+    --kr-muted: #4B5670;
+    --kr-muted2: #6B7690;
     --kr-green: #22C55E;
-    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    font-family: 'Golos Text', system-ui, -apple-system, sans-serif;
     background: var(--kr-bg);
     color: var(--kr-ink);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap');
 
   .kr-container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
   @media (min-width: 768px) { .kr-container { padding: 0 32px; } }
 
   .kr-btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    background: #000; color: #fff; border-radius: 999px; height: 52px;
-    padding: 0 28px; font-weight: 800; font-size: 15px; letter-spacing: .01em;
+    background: var(--kr-red); color: #fff; border-radius: 999px; height: 52px;
+    padding: 0 28px; font-weight: 700; font-size: 15px; letter-spacing: .01em;
     text-decoration: none; border: none; cursor: pointer;
     transition: transform .15s ease, background .15s ease;
   }
-  .kr-btn:hover { background: #27272a; transform: translateY(-1px); }
+  .kr-btn:hover { background: var(--kr-red-deep); transform: translateY(-1px); }
   .kr-btn:active { transform: translateY(0); }
+  .kr-btn-navy { background: var(--kr-navy); }
+  .kr-btn-navy:hover { background: var(--kr-navy-deep); }
   .kr-btn-outline {
     background: #fff; color: var(--kr-ink); box-shadow: 0 8px 20px -10px rgba(15,23,42,.15);
   }
@@ -58,7 +65,7 @@
   .kr-pill {
     display: inline-flex; align-items: center; gap: 8px; background: #fff;
     border-radius: 999px; padding: 8px 16px; font-size: 13px; font-weight: 600;
-    box-shadow: 0 12px 24px -10px rgba(123,92,255,.15), 0 4px 10px -6px rgba(0,0,0,.06);
+    box-shadow: 0 12px 24px -10px rgba(22,41,94,.18), 0 4px 10px -6px rgba(0,0,0,.06);
   }
   .kr-dot { width: 8px; height: 8px; border-radius: 999px; background: var(--kr-green); flex: none; }
   @keyframes kr-pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
@@ -67,18 +74,18 @@
   .kr-fade { opacity: 0; transform: translateY(20px); transition: all .7s cubic-bezier(.16,1,.3,1); }
   .kr-fade.kr-in { opacity: 1; transform: translateY(0); }
 
-  .kr-shadow { box-shadow: 0 20px 40px -12px rgba(123,92,255,.18), 0 8px 16px -8px rgba(15,23,42,.08); }
-  .kr-shadow-sm { box-shadow: 0 12px 24px -10px rgba(123,92,255,.15), 0 4px 10px -6px rgba(0,0,0,.06); }
+  .kr-shadow { box-shadow: 0 20px 40px -12px rgba(22,41,94,.2), 0 8px 16px -8px rgba(15,23,42,.08); }
+  .kr-shadow-sm { box-shadow: 0 12px 24px -10px rgba(22,41,94,.16), 0 4px 10px -6px rgba(0,0,0,.06); }
 
   /* header */
   .kr-header { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; }
   .kr-logo { display: flex; align-items: center; gap: 8px; }
   .kr-logo-badge {
-    width: 32px; height: 32px; border-radius: 999px; background: var(--kr-purple);
+    width: 32px; height: 32px; border-radius: 999px; background: var(--kr-navy);
     display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 13px;
   }
-  .kr-logo-text { font-size: 12px; letter-spacing: .12em; font-weight: 800; text-transform: uppercase; }
-  .kr-city-chips { display: none; gap: 8px; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .kr-logo-text { font-size: 12px; letter-spacing: .12em; font-weight: 700; text-transform: uppercase; }
+  .kr-city-chips { display: none; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
   @media (min-width: 768px) { .kr-city-chips { display: flex; } }
   .kr-city-chip { background: #fff; border-radius: 999px; padding: 6px 12px; }
 
@@ -86,17 +93,17 @@
   .kr-hero { padding: 40px 0 48px; }
   .kr-hero-grid { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: start; margin-top: 32px; }
   @media (min-width: 900px) { .kr-hero-grid { grid-template-columns: 1.15fr .85fr; gap: 24px; } }
-  .kr-h1 { font-weight: 800; letter-spacing: -0.05em; line-height: .85; font-size: 68px; color: var(--kr-purple); margin: 0; }
+  .kr-h1 { font-weight: 800; letter-spacing: -0.05em; line-height: .85; font-size: 68px; color: var(--kr-navy); margin: 0; }
   @media (min-width: 640px) { .kr-h1 { font-size: 92px; } }
   @media (min-width: 900px) { .kr-h1 { font-size: 124px; } }
   .kr-sub { margin-top: 16px; font-size: 19px; line-height: 1.3; font-weight: 600; max-width: 520px; letter-spacing: -0.01em; }
   @media (min-width: 768px) { .kr-sub { font-size: 23px; } }
 
   .kr-stats { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 460px; }
-  .kr-stat-card { background: var(--kr-purple-soft); border-radius: 16px; padding: 16px; position: relative; overflow: hidden; }
-  .kr-stat-num { position: absolute; right: 12px; top: 8px; font-size: 26px; font-weight: 800; color: rgba(123,92,255,.25); }
-  .kr-stat-label { font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--kr-purple); }
-  .kr-stat-title { margin-top: 6px; font-size: 15px; font-weight: 800; line-height: 1.2; }
+  .kr-stat-card { background: var(--kr-navy-soft); border-radius: 16px; padding: 16px; position: relative; overflow: hidden; }
+  .kr-stat-num { position: absolute; right: 12px; top: 8px; font-size: 26px; font-weight: 800; color: rgba(22,41,94,.2); }
+  .kr-stat-label { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--kr-navy); }
+  .kr-stat-title { margin-top: 6px; font-size: 15px; font-weight: 700; line-height: 1.2; }
   .kr-stat-desc { margin-top: 6px; font-size: 12px; color: #334155; line-height: 1.3; }
 
   .kr-cta-row { margin-top: 26px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
@@ -109,7 +116,7 @@
   .kr-visual-card { background: #fff; border-radius: 24px; padding: 10px; }
   .kr-visual-inner {
     border-radius: 18px; overflow: hidden; aspect-ratio: 4/3.1; position: relative;
-    background: linear-gradient(135deg,#DCEBFF 0%,#c9dcff 100%);
+    background: linear-gradient(135deg,var(--kr-navy-soft) 0%,#d3d9ee 100%);
     display: flex; align-items: center; justify-content: center;
   }
   /* ЗАМЕНИТЕ НА ФОТО: удалите .kr-visual-placeholder и поставьте <img src="ваше фото ученика/города"> */
@@ -122,19 +129,19 @@
     display: flex; align-items: center; justify-content: space-between;
   }
   .kr-avatars { display: flex; }
-  .kr-avatar { width: 28px; height: 28px; border-radius: 999px; border: 2px solid #fff; display: grid; place-items: center; font-size: 10px; font-weight: 800; margin-left: -8px; }
+  .kr-avatar { width: 28px; height: 28px; border-radius: 999px; border: 2px solid #fff; display: grid; place-items: center; font-size: 10px; font-weight: 700; margin-left: -8px; }
   .kr-avatar:first-child { margin-left: 0; }
-  .kr-visual-badge-text { font-size: 11px; font-weight: 800; }
+  .kr-visual-badge-text { font-size: 11px; font-weight: 700; }
   .kr-float-tag {
-    position: absolute; top: 44%; right: -8px; background: var(--kr-purple); color: #fff;
-    border-radius: 999px; padding: 6px 14px; font-size: 11px; font-weight: 800; transform: rotate(6deg);
+    position: absolute; top: 44%; right: -8px; background: var(--kr-red); color: #fff;
+    border-radius: 999px; padding: 6px 14px; font-size: 11px; font-weight: 700; transform: rotate(6deg);
   }
 
   /* section heading */
   .kr-section { padding: 8px 0 44px; }
   .kr-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
   .kr-eyebrow-line { height: 1px; width: 40px; background: rgba(0,0,0,.2); }
-  .kr-eyebrow-text { font-size: 11px; letter-spacing: .16em; font-weight: 800; text-transform: uppercase; }
+  .kr-eyebrow-text { font-size: 11px; letter-spacing: .16em; font-weight: 700; text-transform: uppercase; }
   .kr-h2-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
   .kr-h2 { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; line-height: .95; margin: 0; }
   @media (min-width: 768px) { .kr-h2 { font-size: 42px; } }
@@ -142,21 +149,35 @@
   @media (min-width: 768px) { .kr-h2-desc { font-size: 14px; } }
 
   /* why cards */
-  .kr-why-grid { margin-top: 24px; display: grid; grid-template-columns: 1fr; gap: 14px; }
-  @media (min-width: 768px) { .kr-why-grid { grid-template-columns: 1fr 1fr; } }
-  .kr-why-card {
-    background: var(--kr-purple-soft); border-radius: 20px; padding: 20px; position: relative;
-    overflow: hidden; display: flex; gap: 16px; align-items: center;
+  /* why — interactive tabs instead of a dense 2x2 grid */
+  .kr-why-tabs { margin-top: 24px; display: flex; gap: 8px; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+  .kr-why-tabs::-webkit-scrollbar { display: none; }
+  .kr-why-tab {
+    flex: none; background: #fff; border: none; border-radius: 999px; padding: 11px 18px;
+    font-size: 12.5px; font-weight: 700; color: var(--kr-muted); cursor: pointer; white-space: nowrap;
+    transition: background .2s ease, color .2s ease; font-family: inherit;
   }
-  .kr-why-icon { flex: none; width: 64px; height: 64px; border-radius: 16px; background: #fff; display: grid; place-items: center; }
-  .kr-why-icon svg { width: 32px; height: 32px; color: var(--kr-purple); }
-  .kr-why-tag {
-    display: inline-block; background: #fff; border-radius: 999px; padding: 3px 10px;
-    font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--kr-purple);
+  .kr-why-tab .kr-why-tab-num { opacity: .55; margin-right: 6px; }
+  .kr-why-tab.kr-active { background: var(--kr-navy); color: #fff; }
+  .kr-why-tab.kr-active .kr-why-tab-num { opacity: .6; }
+  .kr-why-tab:not(.kr-active):hover { background: var(--kr-navy-soft); color: var(--kr-navy); }
+
+  .kr-why-panels { margin-top: 16px; }
+  .kr-why-panel {
+    display: none; background: var(--kr-navy-soft); border-radius: 24px; padding: 28px;
+    gap: 22px; align-items: center; animation: kr-why-fade .35s ease;
   }
-  .kr-why-title { margin-top: 8px; font-size: 17px; font-weight: 800; line-height: 1.15; color: var(--kr-ink); }
-  .kr-why-desc { margin-top: 4px; font-size: 13px; line-height: 1.35; color: #1e293b; }
-  .kr-why-num { position: absolute; right: 16px; top: 10px; font-size: 40px; font-weight: 800; color: rgba(15,23,42,.1); }
+  .kr-why-panel.kr-active { display: flex; }
+  @media (max-width: 640px) { .kr-why-panel { flex-direction: column; align-items: flex-start; text-align: left; padding: 22px; } }
+  @keyframes kr-why-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .kr-why-panel-icon { flex: none; width: 84px; height: 84px; border-radius: 20px; background: #fff; display: grid; place-items: center; }
+  .kr-why-panel-icon svg { width: 42px; height: 42px; color: var(--kr-navy); }
+  .kr-why-panel-tag {
+    display: inline-block; background: #fff; border-radius: 999px; padding: 4px 12px;
+    font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--kr-navy);
+  }
+  .kr-why-panel-title { margin-top: 10px; font-size: 22px; font-weight: 800; line-height: 1.15; }
+  .kr-why-panel-desc { margin-top: 6px; font-size: 14px; line-height: 1.4; color: #1e293b; max-width: 440px; }
 
   /* steps (NEW) */
   .kr-steps { margin-top: 24px; display: grid; grid-template-columns: 1fr; gap: 14px; }
@@ -164,9 +185,9 @@
   .kr-step { background: #fff; border-radius: 20px; padding: 20px; position: relative; }
   .kr-step-num {
     width: 36px; height: 36px; border-radius: 999px; background: var(--kr-ink); color: #fff;
-    display: grid; place-items: center; font-weight: 800; font-size: 14px;
+    display: grid; place-items: center; font-weight: 700; font-size: 14px;
   }
-  .kr-step-title { margin-top: 14px; font-size: 15px; font-weight: 800; line-height: 1.25; }
+  .kr-step-title { margin-top: 14px; font-size: 15px; font-weight: 700; line-height: 1.25; }
   .kr-step-desc { margin-top: 6px; font-size: 12.5px; color: var(--kr-muted); line-height: 1.4; }
   .kr-step-arrow { display: none; position: absolute; top: 28px; right: -20px; color: #cbd5e1; }
   @media (min-width: 768px) { .kr-step-arrow { display: block; } }
@@ -187,20 +208,20 @@
   /* цветная плашка поверх фото, ~35% непрозрачности — держит бренд-цвет и читаемость текста */
   .kr-city-overlay { position: absolute; inset: 0; opacity: .38; }
   .kr-city-overlay.kr-city-overlay-seoul { background: linear-gradient(160deg,#334155 0%,#0F172A 60%,#000 100%); }
-  .kr-city-overlay.kr-city-overlay-busan { background: linear-gradient(140deg,#3B82F6 0%,#5B6CFF 55%,#7B5CFF 100%); }
-  .kr-city-overlay.kr-city-overlay-daejeon { background: linear-gradient(140deg,#7B5CFF 0%,#6D8BFF 55%,#93C5FD 100%); }
+  .kr-city-overlay.kr-city-overlay-busan { background: linear-gradient(140deg,#1B3F91 0%,#2C5CC5 55%,#4C7BE0 100%); }
+  .kr-city-overlay.kr-city-overlay-daejeon { background: linear-gradient(140deg,#0A1638 0%,#16295E 55%,#2C5CC5 100%); }
   /* дополнительное затемнение снизу — чтобы белый текст и панель всегда читались поверх любого фото */
   .kr-city-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.55) 100%); }
-  .kr-city-content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; }
+  .kr-city-content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; padding-top: 22px; }
   .kr-city-top { display: flex; justify-content: space-between; align-items: flex-start; }
   .kr-city-name { font-size: 48px; font-weight: 800; letter-spacing: -0.05em; line-height: .85; margin: 0; }
   @media (min-width: 768px) { .kr-city-name { font-size: 58px; } }
-  .kr-city-badge { background: #fff; color: #000; font-size: 10px; font-weight: 800; padding: 5px 10px; border-radius: 999px; flex: none; }
+  .kr-city-badge { background: #fff; color: #000; font-size: 10px; font-weight: 700; padding: 5px 10px; border-radius: 999px; flex: none; }
   .kr-city-tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
   .kr-city-tag { background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35); color: #fff; font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 999px; }
   .kr-city-note { margin-top: 16px; font-size: 13px; line-height: 1.4; max-width: 230px; opacity: .92; font-weight: 500; }
   .kr-city-panel { margin-top: auto; background: #fff; color: var(--kr-ink); border-radius: 16px; padding: 16px; }
-  .kr-city-panel-label { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--kr-purple); }
+  .kr-city-panel-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--kr-navy); }
   .kr-city-panel ul { margin: 8px 0 0; padding: 0; list-style: none; font-size: 13px; font-weight: 600; line-height: 1.4; }
   .kr-city-panel li { margin-bottom: 2px; }
   .kr-city-panel-foot { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(0,0,0,.08); display: flex; justify-content: space-between; font-size: 11.5px; }
@@ -213,53 +234,61 @@
     aspect-ratio: 3/4; background-size: cover; background-position: center; background-color: var(--kr-bg);
   }
   .kr-testimonial-body { padding: 14px 16px 16px; }
-  .kr-testimonial-tag { display: inline-flex; background: var(--kr-bg); border-radius: 999px; padding: 4px 10px; font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--kr-purple); }
-  .kr-testimonial-name { margin-top: 8px; font-size: 15px; font-weight: 800; line-height: 1.2; }
+  .kr-testimonial-tag { display: inline-flex; background: var(--kr-bg); border-radius: 999px; padding: 4px 10px; font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--kr-navy); }
+  .kr-testimonial-name { margin-top: 8px; font-size: 15px; font-weight: 700; line-height: 1.2; }
   .kr-testimonial-quote { margin-top: 4px; font-size: 12.5px; color: var(--kr-muted); line-height: 1.35; }
   .kr-testimonial-pills { margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
-  .kr-testimonial-pill { background: var(--kr-purple-soft); border-radius: 999px; padding: 4px 10px; font-size: 10.5px; font-weight: 800; }
-  .kr-testimonial-pill.kr-dark { background: #000; color: #fff; }
+  .kr-testimonial-pill { background: var(--kr-navy-soft); color: var(--kr-navy); border-radius: 999px; padding: 4px 10px; font-size: 10.5px; font-weight: 700; }
+  .kr-testimonial-pill.kr-dark { background: var(--kr-red); color: #fff; }
   /* ЗАМЕНИТЕ НА ФОТО: карточка-заглушка для ещё не добавленного отзыва — удалите класс kr-testimonial-empty и вставьте реальный скриншот */
   .kr-testimonial-card.kr-testimonial-empty { border: 2px dashed #cbd5e1; }
   .kr-testimonial-card.kr-testimonial-empty .kr-testimonial-shot {
     display: flex; align-items: center; justify-content: center; text-align: center;
     color: #94a3b8; font-size: 12.5px; font-weight: 700; padding: 20px; line-height: 1.4;
   }
-  .kr-checklist-box { background: var(--kr-bg); border-radius: 20px; padding: 18px; margin-top: 16px; }
-  .kr-checklist-title { font-size: 13px; font-weight: 800; }
-  .kr-checklist-item { display: flex; gap: 8px; font-size: 13px; line-height: 1.35; margin-top: 10px; }
-  .kr-checklist-item span { color: var(--kr-purple); font-weight: 800; flex: none; }
-  .kr-checklist-foot { margin-top: 14px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--kr-muted2); }
+  /* individual approach block (replaces the generic "what's inside the plan" checklist) */
+  .kr-approach { margin-top: 16px; background: var(--kr-navy-soft); border-radius: 20px; padding: 24px; display: flex; gap: 18px; align-items: flex-start; }
+  @media (max-width: 640px) { .kr-approach { flex-direction: column; } }
+  .kr-approach-icon { flex: none; width: 56px; height: 56px; border-radius: 14px; background: #fff; display: grid; place-items: center; }
+  .kr-approach-icon svg { width: 28px; height: 28px; color: var(--kr-navy); }
+  .kr-approach-tag { display: inline-block; background: #fff; border-radius: 999px; padding: 4px 12px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--kr-navy); }
+  .kr-approach-title { margin-top: 10px; font-size: 18px; font-weight: 700; line-height: 1.2; }
+  .kr-approach-desc { margin-top: 6px; font-size: 13.5px; line-height: 1.45; color: #1e293b; max-width: 560px; }
+  .kr-approach-points { margin-top: 14px; display: grid; gap: 7px; }
+  .kr-approach-point { display: flex; gap: 8px; font-size: 12.5px; line-height: 1.35; }
+  .kr-approach-point span { color: var(--kr-navy); font-weight: 700; flex: none; }
+  .kr-approach-foot { margin-top: 14px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--kr-muted2); }
 
   /* faq */
   .kr-faq { margin-top: 24px; display: grid; gap: 10px; max-width: 780px; }
   .kr-faq-item { background: #fff; border-radius: 16px; overflow: hidden; }
   .kr-faq-q {
     width: 100%; text-align: left; background: none; border: none; cursor: pointer;
-    padding: 18px 20px; font-size: 14.5px; font-weight: 800; display: flex; justify-content: space-between;
+    padding: 18px 20px; font-size: 14.5px; font-weight: 600; display: flex; justify-content: space-between;
     align-items: center; gap: 12px; color: var(--kr-ink); font-family: inherit;
   }
-  .kr-faq-q-icon { flex: none; width: 22px; height: 22px; border-radius: 999px; background: var(--kr-purple-soft); display: grid; place-items: center; font-size: 14px; font-weight: 800; color: var(--kr-purple); transition: transform .2s ease; }
+  .kr-faq-q-icon { flex: none; width: 22px; height: 22px; border-radius: 999px; background: var(--kr-navy-soft); display: grid; place-items: center; font-size: 14px; font-weight: 700; color: var(--kr-navy); transition: transform .2s ease; }
   .kr-faq-item.kr-open .kr-faq-q-icon { transform: rotate(45deg); }
   .kr-faq-a { max-height: 0; overflow: hidden; transition: max-height .25s ease; }
   .kr-faq-a-inner { padding: 0 20px 18px; font-size: 13.5px; color: var(--kr-muted); line-height: 1.5; }
 
   /* final cta */
-  .kr-final { background: #fff; border-radius: 28px; padding: 26px; display: grid; grid-template-columns: 1fr; gap: 24px; }
-  @media (min-width: 768px) { .kr-final { grid-template-columns: .95fr 1.05fr; padding: 40px; align-items: center; } }
-  .kr-final-eyebrow { display: inline-flex; background: var(--kr-purple-soft); border-radius: 999px; padding: 5px 12px; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-  .kr-final-h3 { margin-top: 16px; font-size: 28px; font-weight: 800; line-height: .95; letter-spacing: -0.03em; }
-  @media (min-width: 768px) { .kr-final-h3 { font-size: 36px; } }
-  .kr-final-p { margin-top: 12px; font-size: 14px; color: var(--kr-muted); line-height: 1.45; max-width: 380px; }
-  .kr-final-box { background: var(--kr-bg); border-radius: 20px; padding: 24px; text-align: center; }
-  .kr-final-box-title { font-size: 17px; font-weight: 800; }
-  .kr-final-box-list { margin: 14px 0 0; padding: 0; list-style: none; text-align: left; font-size: 13.5px; font-weight: 600; }
-  .kr-final-box-list li { display: flex; gap: 8px; margin-top: 8px; }
-  .kr-final-box-list span { color: var(--kr-purple); font-weight: 800; }
-  .kr-final .kr-btn { width: 100%; margin-top: 18px; }
-  .kr-final-fine { margin-top: 10px; font-size: 11px; color: #94A3B8; line-height: 1.3; }
-  .kr-final-chips { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
-  .kr-final-chip { background: #fff; border-radius: 999px; padding: 5px 12px; font-size: 11px; }
+  /* final CTA — single emotional banner instead of a two-column form-style layout */
+  .kr-final {
+    position: relative; overflow: hidden; text-align: center; border-radius: 28px; padding: 48px 24px;
+    background: linear-gradient(160deg, var(--kr-navy) 0%, var(--kr-navy-deep) 100%); color: #fff;
+  }
+  @media (min-width: 768px) { .kr-final { padding: 68px 48px; } }
+  .kr-final-glow { position: absolute; z-index: 0; pointer-events: none; width: 420px; height: 420px; border-radius: 999px; background: var(--kr-red); opacity: .22; filter: blur(70px); top: -140px; right: -110px; }
+  .kr-final-inner { position: relative; z-index: 1; }
+  .kr-final-eyebrow { display: inline-flex; background: rgba(255,255,255,.14); border-radius: 999px; padding: 5px 14px; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #fff; }
+  .kr-final-h3 { margin: 18px auto 0; max-width: 560px; font-size: 30px; font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; }
+  @media (min-width: 768px) { .kr-final-h3 { font-size: 44px; } }
+  .kr-final-p { margin: 14px auto 0; max-width: 460px; font-size: 15px; color: rgba(255,255,255,.8); line-height: 1.5; }
+  .kr-final .kr-btn { margin-top: 26px; padding: 0 36px; }
+  .kr-final-fine { margin-top: 12px; font-size: 11.5px; color: rgba(255,255,255,.55); }
+  .kr-final-chips { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .kr-final-chip { background: rgba(255,255,255,.12); color: #fff; border-radius: 999px; padding: 5px 12px; font-size: 11px; }
 
   .kr-footnote { margin-top: 8px; text-align: center; font-size: 11px; color: #94A3B8; padding-bottom: 90px; }
   @media (min-width: 768px) { .kr-footnote { padding-bottom: 24px; } }
@@ -306,14 +335,12 @@
             <div class="kr-stat-card">
               <span class="kr-stat-num">01</span>
               <div class="kr-stat-label">Старт</div>
-              <div class="kr-stat-title">После 11 класса,<br>без ЕНТ и IELTS</div>
-              <div class="kr-stat-desc">Для абитуриентов из Казахстана — программа 2026</div>
+              <div class="kr-stat-title">После 11 класса,<br>без ЕНТ</div>
             </div>
             <div class="kr-stat-card">
               <span class="kr-stat-num">02</span>
               <div class="kr-stat-label">Язык</div>
               <div class="kr-stat-title">TOPIK 1 достаточно,<br>учим в Корее 1 год</div>
-              <div class="kr-stat-desc">Подходит из Алматы / Астаны</div>
             </div>
           </div>
 
@@ -332,13 +359,13 @@
             <div class="kr-visual-inner">
               <!-- ЗАМЕНИТЕ НА ФОТО: реальное фото ваших учеников/студгородка сильно поднимет конверсию -->
               <div class="kr-visual-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#7B5CFF" stroke-width="1.4"><path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/><path d="M6 10v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/><path d="M21 7.5v6"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#16295E" stroke-width="1.4"><path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/><path d="M6 10v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/><path d="M21 7.5v6"/></svg>
                 <p>Фото ваших студентов<br>из Казахстана — сюда</p>
               </div>
               <div class="kr-visual-badge">
                 <div class="kr-avatars">
-                  <div class="kr-avatar" style="background:#DCEBFF">A</div>
-                  <div class="kr-avatar" style="background:#7B5CFF;color:#fff">K</div>
+                  <div class="kr-avatar" style="background:#E6EAF6">A</div>
+                  <div class="kr-avatar" style="background:#16295E;color:#fff">K</div>
                   <div class="kr-avatar" style="background:#000;color:#fff">+12</div>
                 </div>
                 <div class="kr-visual-badge-text">Поступили из Казахстана в 2025 →</div>
@@ -357,41 +384,44 @@
         <p class="kr-h2-desc">Для абитуриентов из Казахстана — 2026: больше мест, проще документы, старт с 0 корейского</p>
       </div>
 
-      <div class="kr-why-grid">
-        <div class="kr-why-card kr-fade">
-          <span class="kr-why-num">01</span>
-          <div class="kr-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+      <div class="kr-why-tabs" role="tablist">
+        <button type="button" class="kr-why-tab kr-active" data-why-tab="0"><span class="kr-why-tab-num">01</span>Умные гранты</button>
+        <button type="button" class="kr-why-tab" data-why-tab="1"><span class="kr-why-tab-num">02</span>Без ЕНТ</button>
+        <button type="button" class="kr-why-tab" data-why-tab="2"><span class="kr-why-tab-num">03</span>ТОП-50 мира</button>
+        <button type="button" class="kr-why-tab" data-why-tab="3"><span class="kr-why-tab-num">04</span>Останешься работать</button>
+      </div>
+
+      <div class="kr-why-panels kr-fade">
+        <div class="kr-why-panel kr-active" data-why-panel="0">
+          <div class="kr-why-panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
           <div>
-            <span class="kr-why-tag">выплата</span>
-            <div class="kr-why-title">Умные гранты</div>
-            <div class="kr-why-desc">GKS покрывает 100% + $900/мес, перелёт и общежитие</div>
+            <span class="kr-why-panel-tag">выплата</span>
+            <div class="kr-why-panel-title">Умные гранты</div>
+            <div class="kr-why-panel-desc">GKS покрывает 100% + $900/мес, перелёт и общежитие</div>
           </div>
         </div>
-        <div class="kr-why-card kr-fade">
-          <span class="kr-why-num">02</span>
-          <div class="kr-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h6M7 13h4"/></svg></div>
+        <div class="kr-why-panel" data-why-panel="1">
+          <div class="kr-why-panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h6M7 13h4"/></svg></div>
           <div>
-            <span class="kr-why-tag">11 класс</span>
-            <div class="kr-why-title">Без ЕНТ</div>
-            <div class="kr-why-desc">После 11 класса, без корейского на старте. TOPIK учим в Корее</div>
+            <span class="kr-why-panel-tag">11 класс</span>
+            <div class="kr-why-panel-title">Без ЕНТ</div>
+            <div class="kr-why-panel-desc">После 11 класса, без корейского на старте. TOPIK учим в Корее</div>
           </div>
         </div>
-        <div class="kr-why-card kr-fade">
-          <span class="kr-why-num">03</span>
-          <div class="kr-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/><path d="M6 10v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg></div>
+        <div class="kr-why-panel" data-why-panel="2">
+          <div class="kr-why-panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/><path d="M6 10v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg></div>
           <div>
-            <span class="kr-why-tag">SNU • Yonsei</span>
-            <div class="kr-why-title">ТОП-50 мира</div>
-            <div class="kr-why-desc">Диплом признают в Samsung, Hyundai, LG. Стажировки с 2 курса</div>
+            <span class="kr-why-panel-tag">SNU • Yonsei</span>
+            <div class="kr-why-panel-title">ТОП-50 мира</div>
+            <div class="kr-why-panel-desc">Диплом признают в Samsung, Hyundai, LG. Стажировки с 2 курса</div>
           </div>
         </div>
-        <div class="kr-why-card kr-fade">
-          <span class="kr-why-num">04</span>
-          <div class="kr-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21l6-6M3 21l4-14 12-4-4 12-14 4z"/></svg></div>
+        <div class="kr-why-panel" data-why-panel="3">
+          <div class="kr-why-panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21l6-6M3 21l4-14 12-4-4 12-14 4z"/></svg></div>
           <div>
-            <span class="kr-why-tag">карьера</span>
-            <div class="kr-why-title">Останешься работать</div>
-            <div class="kr-why-desc">ВНЖ после выпуска, D-10 виза, стартовая $2500–3500</div>
+            <span class="kr-why-panel-tag">карьера</span>
+            <div class="kr-why-panel-title">Останешься работать</div>
+            <div class="kr-why-panel-desc">ВНЖ после выпуска, D-10 виза, стартовая $2500–3500</div>
           </div>
         </div>
       </div>
@@ -537,12 +567,19 @@
         </div>
       </div>
 
-      <div class="kr-checklist-box kr-fade">
-        <div class="kr-checklist-title">Что внутри плана для ребят из Казахстана:</div>
-        <div class="kr-checklist-item"><span>—</span> Список вузов под ваш GPA и профиль из Алматы/Астаны</div>
-        <div class="kr-checklist-item"><span>—</span> Шаблоны эссе GKS + чек-лист документов</div>
-        <div class="kr-checklist-item"><span>—</span> Даты набора 2026 и когда подавать, чтобы успеть</div>
-        <div class="kr-checklist-foot"><span class="kr-dot" style="animation:none"></span> 17 мест — разбор бесплатно, до 30 апреля</div>
+      <div class="kr-approach kr-fade">
+        <div class="kr-approach-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-3.6 3-6 7-6s7 2.4 7 6"/></svg></div>
+        <div>
+          <span class="kr-approach-tag">Индивидуальный подход</span>
+          <div class="kr-approach-title">Подбираем вуз именно под вас</div>
+          <div class="kr-approach-desc">Не выдаём один и тот же список всем подряд. Смотрим на ваш GPA, специальность и то, чего вы хотите после Кореи — и строим маршрут поступления под конкретно вас.</div>
+          <div class="kr-approach-points">
+            <div class="kr-approach-point"><span>—</span> Ваш GPA и специальность — точка отсчёта, а не шаблон</div>
+            <div class="kr-approach-point"><span>—</span> Город и вуз подбираем под ваши цели, а не «куда попроще»</div>
+            <div class="kr-approach-point"><span>—</span> Сопровождаем лично на каждом шаге, от эссе до визы</div>
+          </div>
+          <div class="kr-approach-foot"><span class="kr-dot" style="animation:none"></span> 17 мест — разбор бесплатно, до 30 апреля</div>
+        </div>
       </div>
     </section>
 
@@ -577,22 +614,13 @@
     <!-- FINAL CTA -->
     <section class="kr-section" style="padding-bottom:16px">
       <div class="kr-final kr-fade kr-shadow">
-        <div>
-          <span class="kr-final-eyebrow">Финал</span>
-          <h3 class="kr-final-h3">План поступления<br>в Корею из Казахстана</h3>
-          <p class="kr-final-p">Оставите заявку — свяжемся и бесплатно разберём: куда податься именно вам из Алматы/Астаны, какие шансы на GKS и когда подавать.</p>
-        </div>
-        <div>
-          <div class="kr-final-box">
-            <div class="kr-final-box-title">Что вы получите бесплатно</div>
-            <ul class="kr-final-box-list">
-              <li><span>—</span> Список вузов под ваш GPA и профиль</li>
-              <li><span>—</span> Шаблоны эссе GKS + чек-лист документов</li>
-              <li><span>—</span> Даты набора 2026 и когда подавать</li>
-            </ul>
-            <a href="#popup:zayavka" class="kr-btn">Оставить заявку на консультацию</a>
-            <div class="kr-final-fine">Без спама. Свяжемся и вышлем план для абитуриентов из Казахстана в течение дня</div>
-          </div>
+        <div class="kr-final-glow"></div>
+        <div class="kr-final-inner">
+          <span class="kr-final-eyebrow">Не откладывайте</span>
+          <h3 class="kr-final-h3">Будущее ребёнка не ждёт</h3>
+          <p class="kr-final-p">17 грантовых мест на 2026 год закрываются быстро. Оставьте заявку сейчас — чтобы потом не жалеть об упущенном шансе.</p>
+          <a href="#popup:zayavka" class="kr-btn">Получить консультацию</a>
+          <div class="kr-final-fine">Без спама. Ответим и разберём ваш случай в течение дня</div>
           <div class="kr-final-chips">
             <span class="kr-final-chip">из Казахстана</span>
             <span class="kr-final-chip">абитуриенты 2026</span>
@@ -600,7 +628,7 @@
           </div>
         </div>
       </div>
-      <div class="kr-footnote">v9 • без React/Babel • для Тильды T123</div>
+      <div class="kr-footnote">v10 • без React/Babel • для Тильды T123</div>
     </section>
   </div>
 
@@ -625,6 +653,18 @@
   } else {
     els.forEach(function(el){ el.classList.add('kr-in'); });
   }
+
+  // why-section tabs
+  document.querySelectorAll('.kr-why-tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      var idx = tab.getAttribute('data-why-tab');
+      document.querySelectorAll('.kr-why-tab').forEach(function(t){ t.classList.remove('kr-active'); });
+      tab.classList.add('kr-active');
+      document.querySelectorAll('.kr-why-panel').forEach(function(p){
+        p.classList.toggle('kr-active', p.getAttribute('data-why-panel') === idx);
+      });
+    });
+  });
 
   // faq accordion
   document.querySelectorAll('.kr-faq-q').forEach(function(btn){
