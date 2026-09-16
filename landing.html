@@ -142,10 +142,13 @@
   }
   .kr-why-icon { flex: none; width: 64px; height: 64px; border-radius: 16px; background: #fff; display: grid; place-items: center; }
   .kr-why-icon svg { width: 32px; height: 32px; color: var(--kr-purple); }
-  .kr-why-tag { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--kr-purple); }
-  .kr-why-title { margin-top: 4px; font-size: 17px; font-weight: 800; line-height: 1.15; }
-  .kr-why-desc { margin-top: 4px; font-size: 13px; line-height: 1.35; color: #334155; }
-  .kr-why-num { position: absolute; right: 16px; top: 10px; font-size: 36px; font-weight: 800; color: rgba(255,255,255,.6); }
+  .kr-why-tag {
+    display: inline-block; background: #fff; border-radius: 999px; padding: 3px 10px;
+    font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--kr-purple);
+  }
+  .kr-why-title { margin-top: 8px; font-size: 17px; font-weight: 800; line-height: 1.15; color: var(--kr-ink); }
+  .kr-why-desc { margin-top: 4px; font-size: 13px; line-height: 1.35; color: #1e293b; }
+  .kr-why-num { position: absolute; right: 16px; top: 10px; font-size: 40px; font-weight: 800; color: rgba(15,23,42,.1); }
 
   /* steps (NEW) */
   .kr-steps { margin-top: 24px; display: grid; grid-template-columns: 1fr; gap: 14px; }
@@ -166,11 +169,21 @@
   @media (min-width: 900px) { .kr-cities-grid { grid-template-columns: repeat(3,1fr); } }
   .kr-city-card {
     position: relative; border-radius: 24px; overflow: hidden; height: 480px;
-    display: flex; flex-direction: column; padding: 20px; color: #fff;
+    display: flex; flex-direction: column; padding: 20px; color: #fff; background: #0F172A;
   }
-  .kr-city-card.kr-city-seoul { background: linear-gradient(160deg,#334155 0%,#0F172A 60%,#000 100%); }
-  .kr-city-card.kr-city-busan { background: linear-gradient(140deg,#3B82F6 0%,#5B6CFF 55%,#7B5CFF 100%); }
-  .kr-city-card.kr-city-daejeon { background: linear-gradient(140deg,#7B5CFF 0%,#6D8BFF 55%,#93C5FD 100%); }
+  /* ЗАМЕНИТЕ НА ФОТО: подставьте реальное фото города вместо URL с placehold.co через background-image */
+  .kr-city-photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+  .kr-city-photo.kr-city-photo-seoul { background-image: url('https://placehold.co/900x1200/1e293b/475569?text=SEOUL%0A%28%D1%84%D0%BE%D1%82%D0%BE+%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0%29'); }
+  .kr-city-photo.kr-city-photo-busan { background-image: url('https://placehold.co/900x1200/1e3a8a/60a5fa?text=BUSAN%0A%28%D1%84%D0%BE%D1%82%D0%BE+%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0%29'); }
+  .kr-city-photo.kr-city-photo-daejeon { background-image: url('https://placehold.co/900x1200/4c1d95/c4b5fd?text=DAEJEON%0A%28%D1%84%D0%BE%D1%82%D0%BE+%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0%29'); }
+  /* цветная плашка поверх фото, ~35% непрозрачности — держит бренд-цвет и читаемость текста */
+  .kr-city-overlay { position: absolute; inset: 0; opacity: .38; }
+  .kr-city-overlay.kr-city-overlay-seoul { background: linear-gradient(160deg,#334155 0%,#0F172A 60%,#000 100%); }
+  .kr-city-overlay.kr-city-overlay-busan { background: linear-gradient(140deg,#3B82F6 0%,#5B6CFF 55%,#7B5CFF 100%); }
+  .kr-city-overlay.kr-city-overlay-daejeon { background: linear-gradient(140deg,#7B5CFF 0%,#6D8BFF 55%,#93C5FD 100%); }
+  /* дополнительное затемнение снизу — чтобы белый текст и панель всегда читались поверх любого фото */
+  .kr-city-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.55) 100%); }
+  .kr-city-content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; }
   .kr-city-top { display: flex; justify-content: space-between; align-items: flex-start; }
   .kr-city-name { font-size: 48px; font-weight: 800; letter-spacing: -0.05em; line-height: .85; margin: 0; }
   @media (min-width: 768px) { .kr-city-name { font-size: 58px; } }
@@ -184,21 +197,27 @@
   .kr-city-panel li { margin-bottom: 2px; }
   .kr-city-panel-foot { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(0,0,0,.08); display: flex; justify-content: space-between; font-size: 11.5px; }
 
-  /* proof */
-  .kr-proof { background: #fff; border-radius: 28px; padding: 22px; display: grid; grid-template-columns: 1fr; gap: 22px; }
-  @media (min-width: 768px) { .kr-proof { grid-template-columns: 1.1fr .9fr; padding: 32px; align-items: center; } }
-  .kr-proof-person { display: flex; gap: 16px; align-items: center; }
-  .kr-avatar-lg {
-    width: 88px; height: 88px; border-radius: 999px; flex: none; background: var(--kr-purple-soft);
-    display: grid; place-items: center; border: 4px solid var(--kr-bg); font-weight: 800; font-size: 26px; color: var(--kr-purple);
+  /* proof — testimonial screenshots */
+  .kr-testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 768px) { .kr-testimonials-grid { grid-template-columns: repeat(3,1fr); } }
+  .kr-testimonial-card { background: #fff; border-radius: 20px; overflow: hidden; }
+  .kr-testimonial-shot {
+    aspect-ratio: 3/4; background-size: cover; background-position: center; background-color: var(--kr-bg);
   }
-  .kr-proof-tag { display: inline-flex; background: var(--kr-bg); border-radius: 999px; padding: 5px 12px; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-  .kr-proof-name { margin-top: 8px; font-size: 19px; font-weight: 800; line-height: 1.15; }
-  .kr-proof-quote { margin-top: 6px; font-size: 12.5px; color: var(--kr-muted); line-height: 1.35; }
-  .kr-proof-pills { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
-  .kr-proof-pill { background: var(--kr-purple-soft); border-radius: 999px; padding: 5px 12px; font-size: 11px; font-weight: 800; }
-  .kr-proof-pill.kr-dark { background: #000; color: #fff; }
-  .kr-checklist-box { background: var(--kr-bg); border-radius: 20px; padding: 18px; }
+  .kr-testimonial-body { padding: 14px 16px 16px; }
+  .kr-testimonial-tag { display: inline-flex; background: var(--kr-bg); border-radius: 999px; padding: 4px 10px; font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--kr-purple); }
+  .kr-testimonial-name { margin-top: 8px; font-size: 15px; font-weight: 800; line-height: 1.2; }
+  .kr-testimonial-quote { margin-top: 4px; font-size: 12.5px; color: var(--kr-muted); line-height: 1.35; }
+  .kr-testimonial-pills { margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .kr-testimonial-pill { background: var(--kr-purple-soft); border-radius: 999px; padding: 4px 10px; font-size: 10.5px; font-weight: 800; }
+  .kr-testimonial-pill.kr-dark { background: #000; color: #fff; }
+  /* ЗАМЕНИТЕ НА ФОТО: карточка-заглушка для ещё не добавленного отзыва — удалите класс kr-testimonial-empty и вставьте реальный скриншот */
+  .kr-testimonial-card.kr-testimonial-empty { border: 2px dashed #cbd5e1; }
+  .kr-testimonial-card.kr-testimonial-empty .kr-testimonial-shot {
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    color: #94a3b8; font-size: 12.5px; font-weight: 700; padding: 20px; line-height: 1.4;
+  }
+  .kr-checklist-box { background: var(--kr-bg); border-radius: 20px; padding: 18px; margin-top: 16px; }
   .kr-checklist-title { font-size: 13px; font-weight: 800; }
   .kr-checklist-item { display: flex; gap: 8px; font-size: 13px; line-height: 1.35; margin-top: 10px; }
   .kr-checklist-item span { color: var(--kr-purple); font-weight: 800; flex: none; }
@@ -291,8 +310,8 @@
           </div>
 
           <div class="kr-cta-row kr-fade">
-            <a href="#popup:zayavka" class="kr-btn">Получить план в WhatsApp</a>
-            <span class="kr-cta-note">Отвечаем за 7 мин<br>из Алматы / Астаны</span>
+            <a href="#popup:zayavka" class="kr-btn">Оставить заявку</a>
+            <span class="kr-cta-note">Бесплатная консультация<br>ответим за 7 мин</span>
           </div>
 
           <div class="kr-trust-line kr-fade">
@@ -413,43 +432,57 @@
       </div>
 
       <div class="kr-cities-grid">
-        <div class="kr-city-card kr-city-seoul kr-fade kr-shadow">
-          <!-- ЗАМЕНИТЕ НА ФОТО Сеула: background:url(...) center/cover -->
-          <div class="kr-city-top">
-            <h3 class="kr-city-name">SEOUL</h3>
-            <span class="kr-city-badge">столица</span>
-          </div>
-          <div class="kr-city-tags">
-            <span class="kr-city-tag">IT и стартапы</span><span class="kr-city-tag">бизнес</span><span class="kr-city-tag">медиа</span>
-          </div>
-          <div class="kr-city-panel">
-            <div class="kr-city-panel-label">Где учиться</div>
-            <ul><li>• SNU, Yonsei, Korea University</li><li>• Жизнь в центре Азии</li><li>• Много стажировок</li></ul>
-            <div class="kr-city-panel-foot"><span style="color:#64748B">Для ребят из Казахстана</span><span style="font-weight:800">от 17 лет →</span></div>
-          </div>
-        </div>
-
-        <div class="kr-city-card kr-city-busan kr-fade kr-shadow">
-          <h3 class="kr-city-name">BUSAN</h3>
-          <div class="kr-city-tags">
-            <span class="kr-city-tag">море</span><span class="kr-city-tag">логистика</span><span class="kr-city-tag">кино</span>
-          </div>
-          <div class="kr-city-note">Второй город Кореи — кампусы у моря, дешевле Сеула на 30%</div>
-          <div class="kr-city-panel">
-            <div class="kr-city-panel-label">Почему выбирают</div>
-            <ul><li>• PNU, PKNU — инженерия и море</li><li>• Грантов больше, конкурс ниже</li><li>• Старт из Казахстана без TOPIK</li></ul>
+        <div class="kr-city-card kr-fade kr-shadow">
+          <div class="kr-city-photo kr-city-photo-seoul"></div>
+          <div class="kr-city-overlay kr-city-overlay-seoul"></div>
+          <div class="kr-city-scrim"></div>
+          <div class="kr-city-content">
+            <div class="kr-city-top">
+              <h3 class="kr-city-name">SEOUL</h3>
+              <span class="kr-city-badge">столица</span>
+            </div>
+            <div class="kr-city-tags">
+              <span class="kr-city-tag">IT и стартапы</span><span class="kr-city-tag">бизнес</span><span class="kr-city-tag">медиа</span>
+            </div>
+            <div class="kr-city-panel">
+              <div class="kr-city-panel-label">Где учиться</div>
+              <ul><li>• SNU, Yonsei, Korea University</li><li>• Жизнь в центре Азии</li><li>• Много стажировок</li></ul>
+              <div class="kr-city-panel-foot"><span style="color:#64748B">Для ребят из Казахстана</span><span style="font-weight:800">от 17 лет →</span></div>
+            </div>
           </div>
         </div>
 
-        <div class="kr-city-card kr-city-daejeon kr-fade kr-shadow">
-          <h3 class="kr-city-name">DAEJEON</h3>
-          <div class="kr-city-tags">
-            <span class="kr-city-tag">наука</span><span class="kr-city-tag">KAIST</span><span class="kr-city-tag">R&D</span>
+        <div class="kr-city-card kr-fade kr-shadow">
+          <div class="kr-city-photo kr-city-photo-busan"></div>
+          <div class="kr-city-overlay kr-city-overlay-busan"></div>
+          <div class="kr-city-scrim"></div>
+          <div class="kr-city-content">
+            <h3 class="kr-city-name">BUSAN</h3>
+            <div class="kr-city-tags">
+              <span class="kr-city-tag">море</span><span class="kr-city-tag">логистика</span><span class="kr-city-tag">кино</span>
+            </div>
+            <div class="kr-city-note">Второй город Кореи — кампусы у моря, дешевле Сеула на 30%</div>
+            <div class="kr-city-panel">
+              <div class="kr-city-panel-label">Почему выбирают</div>
+              <ul><li>• PNU, PKNU — инженерия и море</li><li>• Грантов больше, конкурс ниже</li><li>• Старт из Казахстана без TOPIK</li></ul>
+            </div>
           </div>
-          <div class="kr-city-note">Кремниевая долина Кореи — KAIST и исследовательские центры</div>
-          <div class="kr-city-panel">
-            <div class="kr-city-panel-label">Кому подойдёт</div>
-            <ul><li>• KAIST, CNU — AI, роботы, био</li><li>• Лаборатории Samsung и ETRI</li><li>• Из Казахстана с физмат базой</li></ul>
+        </div>
+
+        <div class="kr-city-card kr-fade kr-shadow">
+          <div class="kr-city-photo kr-city-photo-daejeon"></div>
+          <div class="kr-city-overlay kr-city-overlay-daejeon"></div>
+          <div class="kr-city-scrim"></div>
+          <div class="kr-city-content">
+            <h3 class="kr-city-name">DAEJEON</h3>
+            <div class="kr-city-tags">
+              <span class="kr-city-tag">наука</span><span class="kr-city-tag">KAIST</span><span class="kr-city-tag">R&D</span>
+            </div>
+            <div class="kr-city-note">Кремниевая долина Кореи — KAIST и исследовательские центры</div>
+            <div class="kr-city-panel">
+              <div class="kr-city-panel-label">Кому подойдёт</div>
+              <ul><li>• KAIST, CNU — AI, роботы, био</li><li>• Лаборатории Samsung и ETRI</li><li>• Из Казахстана с физмат базой</li></ul>
+            </div>
           </div>
         </div>
       </div>
@@ -457,26 +490,51 @@
 
     <!-- PROOF -->
     <section class="kr-section">
-      <div class="kr-proof kr-fade kr-shadow">
-        <div class="kr-proof-person">
-          <div class="kr-avatar-lg">А</div>
-          <div>
-            <span class="kr-proof-tag">Соцдоки 2025</span>
-            <div class="kr-proof-name">Айдана, Алматы →<br>GKS в SNU, Сеул</div>
-            <div class="kr-proof-quote">Поступила из Казахстана после 11 класса, без корейского. Сейчас стипендия $920 и общежитие.</div>
-            <div class="kr-proof-pills">
-              <span class="kr-proof-pill">TOPIK 3 за год</span>
-              <span class="kr-proof-pill kr-dark">грант 100%</span>
+      <div class="kr-eyebrow kr-fade">
+        <span class="kr-eyebrow-line"></span>
+        <span class="kr-eyebrow-text">Отзывы • Соцдоки 2025</span>
+      </div>
+      <h2 class="kr-h2 kr-fade" style="font-size:26px;margin-bottom:6px">Реальные истории поступления</h2>
+
+      <div class="kr-testimonials-grid" style="margin-top:20px">
+        <div class="kr-testimonial-card kr-fade kr-shadow-sm">
+          <!-- ЗАМЕНИТЕ НА ФОТО: вставьте реальный скриншот переписки/отзыва Айданы вместо placehold.co -->
+          <div class="kr-testimonial-shot" style="background-image:url('https://placehold.co/480x640/F2F7FF/7B5CFF?text=%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%0A%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%D0%B0%0A%D0%90%D0%B9%D0%B4%D0%B0%D0%BD%D1%8B')"></div>
+          <div class="kr-testimonial-body">
+            <span class="kr-testimonial-tag">Соцдоки 2025</span>
+            <div class="kr-testimonial-name">Айдана, Алматы → GKS в SNU, Сеул</div>
+            <div class="kr-testimonial-quote">Поступила из Казахстана после 11 класса, без корейского. Сейчас стипендия $920 и общежитие.</div>
+            <div class="kr-testimonial-pills">
+              <span class="kr-testimonial-pill">TOPIK 3 за год</span>
+              <span class="kr-testimonial-pill kr-dark">грант 100%</span>
             </div>
           </div>
         </div>
-        <div class="kr-checklist-box">
-          <div class="kr-checklist-title">Что внутри плана для ребят из Казахстана:</div>
-          <div class="kr-checklist-item"><span>—</span> Список вузов под ваш GPA и профиль из Алматы/Астаны</div>
-          <div class="kr-checklist-item"><span>—</span> Шаблоны эссе GKS + чек-лист документов</div>
-          <div class="kr-checklist-item"><span>—</span> Даты набора 2026 и когда подавать, чтобы успеть</div>
-          <div class="kr-checklist-foot"><span class="kr-dot" style="animation:none"></span> 17 мест — разбор бесплатно, до 30 апреля</div>
+
+        <!-- ЗАМЕНИТЕ НА ФОТО: слот под второй реальный отзыв — уберите класс kr-testimonial-empty после загрузки скриншота -->
+        <div class="kr-testimonial-card kr-testimonial-empty kr-fade kr-shadow-sm">
+          <div class="kr-testimonial-shot">+ Добавьте скриншот<br>отзыва из WhatsApp</div>
+          <div class="kr-testimonial-body">
+            <span class="kr-testimonial-tag">Соцдоки 2025</span>
+            <div class="kr-testimonial-name" style="color:#94a3b8">Имя, город → вуз</div>
+          </div>
         </div>
+
+        <div class="kr-testimonial-card kr-testimonial-empty kr-fade kr-shadow-sm">
+          <div class="kr-testimonial-shot">+ Добавьте скриншот<br>отзыва из WhatsApp</div>
+          <div class="kr-testimonial-body">
+            <span class="kr-testimonial-tag">Соцдоки 2025</span>
+            <div class="kr-testimonial-name" style="color:#94a3b8">Имя, город → вуз</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="kr-checklist-box kr-fade">
+        <div class="kr-checklist-title">Что внутри плана для ребят из Казахстана:</div>
+        <div class="kr-checklist-item"><span>—</span> Список вузов под ваш GPA и профиль из Алматы/Астаны</div>
+        <div class="kr-checklist-item"><span>—</span> Шаблоны эссе GKS + чек-лист документов</div>
+        <div class="kr-checklist-item"><span>—</span> Даты набора 2026 и когда подавать, чтобы успеть</div>
+        <div class="kr-checklist-foot"><span class="kr-dot" style="animation:none"></span> 17 мест — разбор бесплатно, до 30 апреля</div>
       </div>
     </section>
 
@@ -514,7 +572,7 @@
         <div>
           <span class="kr-final-eyebrow">Финал</span>
           <h3 class="kr-final-h3">План поступления<br>в Корею из Казахстана</h3>
-          <p class="kr-final-p">Оставите контакт — пришлём в WhatsApp: куда податься именно вам из Алматы/Астаны, какие шансы на GKS и когда подавать.</p>
+          <p class="kr-final-p">Оставите заявку — свяжемся и бесплатно разберём: куда податься именно вам из Алматы/Астаны, какие шансы на GKS и когда подавать.</p>
         </div>
         <div>
           <div class="kr-final-box">
@@ -524,8 +582,8 @@
               <li><span>—</span> Шаблоны эссе GKS + чек-лист документов</li>
               <li><span>—</span> Даты набора 2026 и когда подавать</li>
             </ul>
-            <a href="#popup:zayavka" class="kr-btn">Получить план в WhatsApp</a>
-            <div class="kr-final-fine">Без спама. Пришлём план для абитуриентов из Казахстана в течение дня</div>
+            <a href="#popup:zayavka" class="kr-btn">Оставить заявку на консультацию</a>
+            <div class="kr-final-fine">Без спама. Свяжемся и вышлем план для абитуриентов из Казахстана в течение дня</div>
           </div>
           <div class="kr-final-chips">
             <span class="kr-final-chip">из Казахстана</span>
@@ -541,7 +599,7 @@
   <!-- STICKY MOBILE CTA -->
   <div class="kr-sticky-cta">
     <span class="kr-sticky-text">17 мест на грант, весна 2026</span>
-    <a href="#popup:zayavka" class="kr-btn">Получить план</a>
+    <a href="#popup:zayavka" class="kr-btn">Оставить заявку</a>
   </div>
 </div>
 
