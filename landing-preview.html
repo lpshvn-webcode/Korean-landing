@@ -658,17 +658,30 @@
     els.forEach(function(el){ el.classList.add('kr-in'); });
   }
 
-  // why-section tabs
-  document.querySelectorAll('.kr-why-tab').forEach(function(tab){
-    tab.addEventListener('click', function(){
-      var idx = tab.getAttribute('data-why-tab');
-      document.querySelectorAll('.kr-why-tab').forEach(function(t){ t.classList.remove('kr-active'); });
-      tab.classList.add('kr-active');
-      document.querySelectorAll('.kr-why-panel').forEach(function(p){
-        p.classList.toggle('kr-active', p.getAttribute('data-why-panel') === idx);
+  // why-section tabs — auto-plays like a slideshow until the visitor clicks a tab themselves
+  (function(){
+    var whyTabs = document.querySelectorAll('.kr-why-tab');
+    var whyPanels = document.querySelectorAll('.kr-why-panel');
+    if (!whyTabs.length) return;
+
+    function activateWhy(idx){
+      whyTabs.forEach(function(t){ t.classList.toggle('kr-active', t.getAttribute('data-why-tab') === String(idx)); });
+      whyPanels.forEach(function(p){ p.classList.toggle('kr-active', p.getAttribute('data-why-panel') === String(idx)); });
+    }
+
+    var whyTimer = setInterval(function(){
+      var current = document.querySelector('.kr-why-tab.kr-active');
+      var idx = current ? parseInt(current.getAttribute('data-why-tab'), 10) : 0;
+      activateWhy((idx + 1) % whyTabs.length);
+    }, 4000);
+
+    whyTabs.forEach(function(tab){
+      tab.addEventListener('click', function(){
+        clearInterval(whyTimer); // manual click ends the slideshow for good
+        activateWhy(tab.getAttribute('data-why-tab'));
       });
     });
-  });
+  })();
 
   // faq accordion
   document.querySelectorAll('.kr-faq-q').forEach(function(btn){
