@@ -1,0 +1,585 @@
+<!--
+  ЛЕНДИНГ "ПОСТУПЛЕНИЕ В КОРЕЮ" — для вставки в блок T123 (HTML-код) в Тильде.
+
+  КАК ПОДКЛЮЧИТЬ:
+  1. Вставьте всё содержимое этого файла в блок T123 → "Вставить код" в Тильде.
+  2. Кнопки CTA ведут на попап через href="#popup:zayavka".
+     Замените "zayavka" на алиас вашего попапа:
+     в блоке попапа в Тильде откройте настройки блока → "Доп. настройки" →
+     "Алиас для показа по ссылке" → впишите туда, например, zayavka — и он совпадёт с кодом ниже.
+  3. Замените плейсхолдеры фото (комментарии "ЗАМЕНИТЕ НА ФОТО") на реальные фото
+     учеников/кампусов через медиа-менеджер Тильды — это сильно поднимет доверие
+     по сравнению с иконками/градиентами.
+  4. Числа (17 мест, $900, TOPIK 3 за год и т.д.) — проверьте актуальность перед публикацией,
+     это то, что было в исходном тексте, я их не менял.
+-->
+<style>
+  .kr-wrap * { box-sizing: border-box; }
+  .kr-wrap {
+    --kr-bg: #F2F7FF;
+    --kr-ink: #0F172A;
+    --kr-purple: #7B5CFF;
+    --kr-purple-soft: #DCEBFF;
+    --kr-muted: #475569;
+    --kr-muted2: #64748B;
+    --kr-green: #22C55E;
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    background: var(--kr-bg);
+    color: var(--kr-ink);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap');
+
+  .kr-container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+  @media (min-width: 768px) { .kr-container { padding: 0 32px; } }
+
+  .kr-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: #000; color: #fff; border-radius: 999px; height: 52px;
+    padding: 0 28px; font-weight: 800; font-size: 15px; letter-spacing: .01em;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .kr-btn:hover { background: #27272a; transform: translateY(-1px); }
+  .kr-btn:active { transform: translateY(0); }
+  .kr-btn-outline {
+    background: #fff; color: var(--kr-ink); box-shadow: 0 8px 20px -10px rgba(15,23,42,.15);
+  }
+  .kr-btn-outline:hover { background: #fff; opacity: .85; }
+  .kr-pill {
+    display: inline-flex; align-items: center; gap: 8px; background: #fff;
+    border-radius: 999px; padding: 8px 16px; font-size: 13px; font-weight: 600;
+    box-shadow: 0 12px 24px -10px rgba(123,92,255,.15), 0 4px 10px -6px rgba(0,0,0,.06);
+  }
+  .kr-dot { width: 8px; height: 8px; border-radius: 999px; background: var(--kr-green); flex: none; }
+  @keyframes kr-pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+  .kr-dot { animation: kr-pulse 1.8s ease-in-out infinite; }
+
+  .kr-fade { opacity: 0; transform: translateY(20px); transition: all .7s cubic-bezier(.16,1,.3,1); }
+  .kr-fade.kr-in { opacity: 1; transform: translateY(0); }
+
+  .kr-shadow { box-shadow: 0 20px 40px -12px rgba(123,92,255,.18), 0 8px 16px -8px rgba(15,23,42,.08); }
+  .kr-shadow-sm { box-shadow: 0 12px 24px -10px rgba(123,92,255,.15), 0 4px 10px -6px rgba(0,0,0,.06); }
+
+  /* header */
+  .kr-header { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; }
+  .kr-logo { display: flex; align-items: center; gap: 8px; }
+  .kr-logo-badge {
+    width: 32px; height: 32px; border-radius: 999px; background: var(--kr-purple);
+    display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 13px;
+  }
+  .kr-logo-text { font-size: 12px; letter-spacing: .12em; font-weight: 800; text-transform: uppercase; }
+  .kr-city-chips { display: none; gap: 8px; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  @media (min-width: 768px) { .kr-city-chips { display: flex; } }
+  .kr-city-chip { background: #fff; border-radius: 999px; padding: 6px 12px; }
+
+  /* hero */
+  .kr-hero { padding: 40px 0 48px; }
+  .kr-hero-grid { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: start; margin-top: 32px; }
+  @media (min-width: 900px) { .kr-hero-grid { grid-template-columns: 1.15fr .85fr; gap: 24px; } }
+  .kr-h1 { font-weight: 800; letter-spacing: -0.05em; line-height: .85; font-size: 68px; color: var(--kr-purple); margin: 0; }
+  @media (min-width: 640px) { .kr-h1 { font-size: 92px; } }
+  @media (min-width: 900px) { .kr-h1 { font-size: 124px; } }
+  .kr-sub { margin-top: 16px; font-size: 19px; line-height: 1.3; font-weight: 600; max-width: 520px; letter-spacing: -0.01em; }
+  @media (min-width: 768px) { .kr-sub { font-size: 23px; } }
+
+  .kr-stats { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 460px; }
+  .kr-stat-card { background: var(--kr-purple-soft); border-radius: 16px; padding: 16px; position: relative; overflow: hidden; }
+  .kr-stat-num { position: absolute; right: 12px; top: 8px; font-size: 26px; font-weight: 800; color: rgba(123,92,255,.25); }
+  .kr-stat-label { font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--kr-purple); }
+  .kr-stat-title { margin-top: 6px; font-size: 15px; font-weight: 800; line-height: 1.2; }
+  .kr-stat-desc { margin-top: 6px; font-size: 12px; color: #334155; line-height: 1.3; }
+
+  .kr-cta-row { margin-top: 26px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+  .kr-cta-note { font-size: 12px; line-height: 1.3; color: var(--kr-muted); }
+  .kr-trust-line { margin-top: 32px; display: none; gap: 10px; font-size: 11px; color: var(--kr-muted2); font-weight: 600; }
+  @media (min-width: 768px) { .kr-trust-line { display: flex; } }
+
+  /* hero visual */
+  .kr-visual { position: relative; }
+  .kr-visual-card { background: #fff; border-radius: 24px; padding: 10px; }
+  .kr-visual-inner {
+    border-radius: 18px; overflow: hidden; aspect-ratio: 4/3.1; position: relative;
+    background: linear-gradient(135deg,#DCEBFF 0%,#c9dcff 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  /* ЗАМЕНИТЕ НА ФОТО: удалите .kr-visual-placeholder и поставьте <img src="ваше фото ученика/города"> */
+  .kr-visual-placeholder { text-align: center; padding: 24px; }
+  .kr-visual-placeholder svg { width: 96px; height: 96px; opacity: .55; }
+  .kr-visual-placeholder p { margin-top: 10px; font-size: 12px; color: #5b6b8c; font-weight: 700; }
+  .kr-visual-badge {
+    position: absolute; bottom: 14px; left: 14px; right: 14px; background: rgba(255,255,255,.92);
+    backdrop-filter: blur(6px); border-radius: 14px; padding: 12px 14px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .kr-avatars { display: flex; }
+  .kr-avatar { width: 28px; height: 28px; border-radius: 999px; border: 2px solid #fff; display: grid; place-items: center; font-size: 10px; font-weight: 800; margin-left: -8px; }
+  .kr-avatar:first-child { margin-left: 0; }
+  .kr-visual-badge-text { font-size: 11px; font-weight: 800; }
+  .kr-float-tag {
+    position: absolute; top: 44%; right: -8px; background: var(--kr-purple); color: #fff;
+    border-radius: 999px; padding: 6px 14px; font-size: 11px; font-weight: 800; transform: rotate(6deg);
+  }
+
+  /* section heading */
+  .kr-section { padding: 8px 0 44px; }
+  .kr-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .kr-eyebrow-line { height: 1px; width: 40px; background: rgba(0,0,0,.2); }
+  .kr-eyebrow-text { font-size: 11px; letter-spacing: .16em; font-weight: 800; text-transform: uppercase; }
+  .kr-h2-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .kr-h2 { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; line-height: .95; margin: 0; }
+  @media (min-width: 768px) { .kr-h2 { font-size: 42px; } }
+  .kr-h2-desc { font-size: 13px; color: var(--kr-muted); max-width: 360px; line-height: 1.4; }
+  @media (min-width: 768px) { .kr-h2-desc { font-size: 14px; } }
+
+  /* why cards */
+  .kr-why-grid { margin-top: 24px; display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 768px) { .kr-why-grid { grid-template-columns: 1fr 1fr; } }
+  .kr-why-card {
+    background: var(--kr-purple-soft); border-radius: 20px; padding: 20px; position: relative;
+    overflow: hidden; display: flex; gap: 16px; align-items: center;
+  }
+  .kr-why-icon { flex: none; width: 64px; height: 64px; border-radius: 16px; background: #fff; display: grid; place-items: center; }
+  .kr-why-icon svg { width: 32px; height: 32px; color: var(--kr-purple); }
+  .kr-why-tag { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--kr-purple); }
+  .kr-why-title { margin-top: 4px; font-size: 17px; font-weight: 800; line-height: 1.15; }
+  .kr-why-desc { margin-top: 4px; font-size: 13px; line-height: 1.35; color: #334155; }
+  .kr-why-num { position: absolute; right: 16px; top: 10px; font-size: 36px; font-weight: 800; color: rgba(255,255,255,.6); }
+
+  /* steps (NEW) */
+  .kr-steps { margin-top: 24px; display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 768px) { .kr-steps { grid-template-columns: repeat(4,1fr); } }
+  .kr-step { background: #fff; border-radius: 20px; padding: 20px; position: relative; }
+  .kr-step-num {
+    width: 36px; height: 36px; border-radius: 999px; background: var(--kr-ink); color: #fff;
+    display: grid; place-items: center; font-weight: 800; font-size: 14px;
+  }
+  .kr-step-title { margin-top: 14px; font-size: 15px; font-weight: 800; line-height: 1.25; }
+  .kr-step-desc { margin-top: 6px; font-size: 12.5px; color: var(--kr-muted); line-height: 1.4; }
+  .kr-step-arrow { display: none; position: absolute; top: 28px; right: -20px; color: #cbd5e1; }
+  @media (min-width: 768px) { .kr-step-arrow { display: block; } }
+  .kr-step:last-child .kr-step-arrow { display: none; }
+
+  /* cities */
+  .kr-cities-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 900px) { .kr-cities-grid { grid-template-columns: repeat(3,1fr); } }
+  .kr-city-card {
+    position: relative; border-radius: 24px; overflow: hidden; height: 480px;
+    display: flex; flex-direction: column; padding: 20px; color: #fff;
+  }
+  .kr-city-card.kr-city-seoul { background: linear-gradient(160deg,#334155 0%,#0F172A 60%,#000 100%); }
+  .kr-city-card.kr-city-busan { background: linear-gradient(140deg,#3B82F6 0%,#5B6CFF 55%,#7B5CFF 100%); }
+  .kr-city-card.kr-city-daejeon { background: linear-gradient(140deg,#7B5CFF 0%,#6D8BFF 55%,#93C5FD 100%); }
+  .kr-city-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .kr-city-name { font-size: 48px; font-weight: 800; letter-spacing: -0.05em; line-height: .85; margin: 0; }
+  @media (min-width: 768px) { .kr-city-name { font-size: 58px; } }
+  .kr-city-badge { background: #fff; color: #000; font-size: 10px; font-weight: 800; padding: 5px 10px; border-radius: 999px; flex: none; }
+  .kr-city-tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .kr-city-tag { background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35); color: #fff; font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 999px; }
+  .kr-city-note { margin-top: 16px; font-size: 13px; line-height: 1.4; max-width: 230px; opacity: .92; font-weight: 500; }
+  .kr-city-panel { margin-top: auto; background: #fff; color: var(--kr-ink); border-radius: 16px; padding: 16px; }
+  .kr-city-panel-label { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--kr-purple); }
+  .kr-city-panel ul { margin: 8px 0 0; padding: 0; list-style: none; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  .kr-city-panel li { margin-bottom: 2px; }
+  .kr-city-panel-foot { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(0,0,0,.08); display: flex; justify-content: space-between; font-size: 11.5px; }
+
+  /* proof */
+  .kr-proof { background: #fff; border-radius: 28px; padding: 22px; display: grid; grid-template-columns: 1fr; gap: 22px; }
+  @media (min-width: 768px) { .kr-proof { grid-template-columns: 1.1fr .9fr; padding: 32px; align-items: center; } }
+  .kr-proof-person { display: flex; gap: 16px; align-items: center; }
+  .kr-avatar-lg {
+    width: 88px; height: 88px; border-radius: 999px; flex: none; background: var(--kr-purple-soft);
+    display: grid; place-items: center; border: 4px solid var(--kr-bg); font-weight: 800; font-size: 26px; color: var(--kr-purple);
+  }
+  .kr-proof-tag { display: inline-flex; background: var(--kr-bg); border-radius: 999px; padding: 5px 12px; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .kr-proof-name { margin-top: 8px; font-size: 19px; font-weight: 800; line-height: 1.15; }
+  .kr-proof-quote { margin-top: 6px; font-size: 12.5px; color: var(--kr-muted); line-height: 1.35; }
+  .kr-proof-pills { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .kr-proof-pill { background: var(--kr-purple-soft); border-radius: 999px; padding: 5px 12px; font-size: 11px; font-weight: 800; }
+  .kr-proof-pill.kr-dark { background: #000; color: #fff; }
+  .kr-checklist-box { background: var(--kr-bg); border-radius: 20px; padding: 18px; }
+  .kr-checklist-title { font-size: 13px; font-weight: 800; }
+  .kr-checklist-item { display: flex; gap: 8px; font-size: 13px; line-height: 1.35; margin-top: 10px; }
+  .kr-checklist-item span { color: var(--kr-purple); font-weight: 800; flex: none; }
+  .kr-checklist-foot { margin-top: 14px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--kr-muted2); }
+
+  /* faq */
+  .kr-faq { margin-top: 24px; display: grid; gap: 10px; max-width: 780px; }
+  .kr-faq-item { background: #fff; border-radius: 16px; overflow: hidden; }
+  .kr-faq-q {
+    width: 100%; text-align: left; background: none; border: none; cursor: pointer;
+    padding: 18px 20px; font-size: 14.5px; font-weight: 800; display: flex; justify-content: space-between;
+    align-items: center; gap: 12px; color: var(--kr-ink); font-family: inherit;
+  }
+  .kr-faq-q-icon { flex: none; width: 22px; height: 22px; border-radius: 999px; background: var(--kr-purple-soft); display: grid; place-items: center; font-size: 14px; font-weight: 800; color: var(--kr-purple); transition: transform .2s ease; }
+  .kr-faq-item.kr-open .kr-faq-q-icon { transform: rotate(45deg); }
+  .kr-faq-a { max-height: 0; overflow: hidden; transition: max-height .25s ease; }
+  .kr-faq-a-inner { padding: 0 20px 18px; font-size: 13.5px; color: var(--kr-muted); line-height: 1.5; }
+
+  /* final cta */
+  .kr-final { background: #fff; border-radius: 28px; padding: 26px; display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 768px) { .kr-final { grid-template-columns: .95fr 1.05fr; padding: 40px; align-items: center; } }
+  .kr-final-eyebrow { display: inline-flex; background: var(--kr-purple-soft); border-radius: 999px; padding: 5px 12px; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .kr-final-h3 { margin-top: 16px; font-size: 28px; font-weight: 800; line-height: .95; letter-spacing: -0.03em; }
+  @media (min-width: 768px) { .kr-final-h3 { font-size: 36px; } }
+  .kr-final-p { margin-top: 12px; font-size: 14px; color: var(--kr-muted); line-height: 1.45; max-width: 380px; }
+  .kr-final-box { background: var(--kr-bg); border-radius: 20px; padding: 24px; text-align: center; }
+  .kr-final-box-title { font-size: 17px; font-weight: 800; }
+  .kr-final-box-list { margin: 14px 0 0; padding: 0; list-style: none; text-align: left; font-size: 13.5px; font-weight: 600; }
+  .kr-final-box-list li { display: flex; gap: 8px; margin-top: 8px; }
+  .kr-final-box-list span { color: var(--kr-purple); font-weight: 800; }
+  .kr-final .kr-btn { width: 100%; margin-top: 18px; }
+  .kr-final-fine { margin-top: 10px; font-size: 11px; color: #94A3B8; line-height: 1.3; }
+  .kr-final-chips { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .kr-final-chip { background: #fff; border-radius: 999px; padding: 5px 12px; font-size: 11px; }
+
+  .kr-footnote { margin-top: 8px; text-align: center; font-size: 11px; color: #94A3B8; padding-bottom: 90px; }
+  @media (min-width: 768px) { .kr-footnote { padding-bottom: 24px; } }
+
+  /* sticky mobile cta */
+  .kr-sticky-cta {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: #fff;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom,0px));
+    box-shadow: 0 -8px 24px -12px rgba(15,23,42,.25);
+    display: flex; gap: 10px; align-items: center;
+  }
+  @media (min-width: 768px) { .kr-sticky-cta { display: none; } }
+  .kr-sticky-cta .kr-btn { flex: 1; height: 48px; }
+  .kr-sticky-text { font-size: 11px; font-weight: 700; color: var(--kr-muted); line-height: 1.2; flex: none; width: 78px; }
+</style>
+
+<div class="kr-wrap">
+  <div class="kr-container">
+    <!-- HEADER -->
+    <header class="kr-header">
+      <div class="kr-logo">
+        <div class="kr-logo-badge">K</div>
+        <span class="kr-logo-text">Korea • GKS • KZ</span>
+      </div>
+      <div class="kr-city-chips">
+        <span class="kr-city-chip">Алматы</span>
+        <span class="kr-city-chip">Астана</span>
+        <span class="kr-city-chip">Шымкент</span>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="kr-hero">
+      <div class="kr-fade">
+        <span class="kr-pill"><span class="kr-dot"></span> Набор весна 2026 — 17 мест на грант</span>
+      </div>
+
+      <div class="kr-hero-grid">
+        <div>
+          <h1 class="kr-h1 kr-fade">KOREA</h1>
+          <p class="kr-sub kr-fade">Поступаем из Казахстана<br>на грант GKS — с 0 корейского</p>
+
+          <div class="kr-stats kr-fade">
+            <div class="kr-stat-card">
+              <span class="kr-stat-num">01</span>
+              <div class="kr-stat-label">Старт</div>
+              <div class="kr-stat-title">После 11 класса,<br>без ЕНТ и IELTS</div>
+              <div class="kr-stat-desc">Для абитуриентов из Казахстана — программа 2026</div>
+            </div>
+            <div class="kr-stat-card">
+              <span class="kr-stat-num">02</span>
+              <div class="kr-stat-label">Язык</div>
+              <div class="kr-stat-title">TOPIK 1 достаточно,<br>учим в Корее 1 год</div>
+              <div class="kr-stat-desc">Подходит из Алматы / Астаны</div>
+            </div>
+          </div>
+
+          <div class="kr-cta-row kr-fade">
+            <a href="#popup:zayavka" class="kr-btn">Получить план в WhatsApp</a>
+            <span class="kr-cta-note">Отвечаем за 7 мин<br>из Алматы / Астаны</span>
+          </div>
+
+          <div class="kr-trust-line kr-fade">
+            <span>• SNU, Yonsei, Korea •</span><span>• GKS 100% •</span><span>• $900 / мес стипендия</span>
+          </div>
+        </div>
+
+        <div class="kr-visual kr-fade">
+          <div class="kr-visual-card kr-shadow">
+            <div class="kr-visual-inner">
+              <!-- ЗАМЕНИТЕ НА ФОТО: реальное фото ваших учеников/студгородка сильно поднимет конверсию -->
+              <div class="kr-visual-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#7B5CFF" stroke-width="1.4"><path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/><path d="M6 10v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/><path d="M21 7.5v6"/></svg>
+                <p>Фото ваших студентов<br>из Казахстана — сюда</p>
+              </div>
+              <div class="kr-visual-badge">
+                <div class="kr-avatars">
+                  <div class="kr-avatar" style="background:#DCEBFF">A</div>
+                  <div class="kr-avatar" style="background:#7B5CFF;color:#fff">K</div>
+                  <div class="kr-avatar" style="background:#000;color:#fff">+12</div>
+                </div>
+                <div class="kr-visual-badge-text">Поступили из Казахстана в 2025 →</div>
+              </div>
+            </div>
+          </div>
+          <span class="kr-float-tag">GKS грант</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section class="kr-section">
+      <div class="kr-h2-row kr-fade">
+        <h2 class="kr-h2">ПОЧЕМУ КОРЕЯ<br>ИМЕННО СЕЙЧАС</h2>
+        <p class="kr-h2-desc">Для абитуриентов из Казахстана — 2026: больше мест, проще документы, старт с 0 корейского</p>
+      </div>
+
+      <div class="kr-why-grid">
+        <div class="kr-why-card kr-fade">
+          <span class="kr-why-num">01</span>
+          <div class="kr-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+          <div>
+            <span class="kr-why-tag">выплата</span>
+            <div class="kr-why-title">Умные гранты</div>
+            <div class="kr-why-desc">GKS покрывает 100% + $900/мес, перелёт и общежитие</div>
+          </div>
+        </div>
+        <div class="kr-why-card kr-fade">
+          <span class="kr-why-num">02</span>
+          <div class="kr-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h6M7 13h4"/></svg></div>
+          <div>
+            <span class="kr-why-tag">11 класс</span>
+            <div class="kr-why-title">Без ЕНТ</div>
+            <div class="kr-why-desc">После 11 класса, без корейского на старте. TOPIK учим в Корее</div>
+          </div>
+        </div>
+        <div class="kr-why-card kr-fade">
+          <span class="kr-why-num">03</span>
+          <div class="kr-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/><path d="M6 10v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg></div>
+          <div>
+            <span class="kr-why-tag">SNU • Yonsei</span>
+            <div class="kr-why-title">ТОП-50 мира</div>
+            <div class="kr-why-desc">Диплом признают в Samsung, Hyundai, LG. Стажировки с 2 курса</div>
+          </div>
+        </div>
+        <div class="kr-why-card kr-fade">
+          <span class="kr-why-num">04</span>
+          <div class="kr-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21l6-6M3 21l4-14 12-4-4 12-14 4z"/></svg></div>
+          <div>
+            <span class="kr-why-tag">карьера</span>
+            <div class="kr-why-title">Останешься работать</div>
+            <div class="kr-why-desc">ВНЖ после выпуска, D-10 виза, стартовая $2500–3500</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS (NEW) -->
+    <section class="kr-section">
+      <div class="kr-eyebrow kr-fade">
+        <span class="kr-eyebrow-line"></span>
+        <span class="kr-eyebrow-text">Как это происходит</span>
+      </div>
+      <h2 class="kr-h2 kr-fade" style="font-size:26px">4 шага от заявки до зачисления</h2>
+
+      <div class="kr-steps">
+        <div class="kr-step kr-fade">
+          <div class="kr-step-num">1</div>
+          <div class="kr-step-title">Оставляете заявку</div>
+          <div class="kr-step-desc">Имя, город, WhatsApp — 20 секунд, без обязательств</div>
+          <span class="kr-step-arrow">→</span>
+        </div>
+        <div class="kr-step kr-fade">
+          <div class="kr-step-num">2</div>
+          <div class="kr-step-title">Разбор за 7 минут</div>
+          <div class="kr-step-desc">Пишем в WhatsApp: куда реально поступить с вашими баллами и шансы на GKS</div>
+          <span class="kr-step-arrow">→</span>
+        </div>
+        <div class="kr-step kr-fade">
+          <div class="kr-step-num">3</div>
+          <div class="kr-step-title">Собираем документы</div>
+          <div class="kr-step-desc">Эссе, рекомендации, чек-лист — помогаем на каждом шаге до дедлайна 2026</div>
+          <span class="kr-step-arrow">→</span>
+        </div>
+        <div class="kr-step kr-fade">
+          <div class="kr-step-num">4</div>
+          <div class="kr-step-title">Подача и зачисление</div>
+          <div class="kr-step-desc">Сопровождаем до визы D-2/D-4 и вылета в Корею</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CITIES -->
+    <section class="kr-section">
+      <div class="kr-eyebrow kr-fade">
+        <span class="kr-eyebrow-line"></span>
+        <span class="kr-eyebrow-text">Города • выбрать кампус</span>
+      </div>
+
+      <div class="kr-cities-grid">
+        <div class="kr-city-card kr-city-seoul kr-fade kr-shadow">
+          <!-- ЗАМЕНИТЕ НА ФОТО Сеула: background:url(...) center/cover -->
+          <div class="kr-city-top">
+            <h3 class="kr-city-name">SEOUL</h3>
+            <span class="kr-city-badge">столица</span>
+          </div>
+          <div class="kr-city-tags">
+            <span class="kr-city-tag">IT и стартапы</span><span class="kr-city-tag">бизнес</span><span class="kr-city-tag">медиа</span>
+          </div>
+          <div class="kr-city-panel">
+            <div class="kr-city-panel-label">Где учиться</div>
+            <ul><li>• SNU, Yonsei, Korea University</li><li>• Жизнь в центре Азии</li><li>• Много стажировок</li></ul>
+            <div class="kr-city-panel-foot"><span style="color:#64748B">Для ребят из Казахстана</span><span style="font-weight:800">от 17 лет →</span></div>
+          </div>
+        </div>
+
+        <div class="kr-city-card kr-city-busan kr-fade kr-shadow">
+          <h3 class="kr-city-name">BUSAN</h3>
+          <div class="kr-city-tags">
+            <span class="kr-city-tag">море</span><span class="kr-city-tag">логистика</span><span class="kr-city-tag">кино</span>
+          </div>
+          <div class="kr-city-note">Второй город Кореи — кампусы у моря, дешевле Сеула на 30%</div>
+          <div class="kr-city-panel">
+            <div class="kr-city-panel-label">Почему выбирают</div>
+            <ul><li>• PNU, PKNU — инженерия и море</li><li>• Грантов больше, конкурс ниже</li><li>• Старт из Казахстана без TOPIK</li></ul>
+          </div>
+        </div>
+
+        <div class="kr-city-card kr-city-daejeon kr-fade kr-shadow">
+          <h3 class="kr-city-name">DAEJEON</h3>
+          <div class="kr-city-tags">
+            <span class="kr-city-tag">наука</span><span class="kr-city-tag">KAIST</span><span class="kr-city-tag">R&D</span>
+          </div>
+          <div class="kr-city-note">Кремниевая долина Кореи — KAIST и исследовательские центры</div>
+          <div class="kr-city-panel">
+            <div class="kr-city-panel-label">Кому подойдёт</div>
+            <ul><li>• KAIST, CNU — AI, роботы, био</li><li>• Лаборатории Samsung и ETRI</li><li>• Из Казахстана с физмат базой</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROOF -->
+    <section class="kr-section">
+      <div class="kr-proof kr-fade kr-shadow">
+        <div class="kr-proof-person">
+          <div class="kr-avatar-lg">А</div>
+          <div>
+            <span class="kr-proof-tag">Соцдоки 2025</span>
+            <div class="kr-proof-name">Айдана, Алматы →<br>GKS в SNU, Сеул</div>
+            <div class="kr-proof-quote">Поступила из Казахстана после 11 класса, без корейского. Сейчас стипендия $920 и общежитие.</div>
+            <div class="kr-proof-pills">
+              <span class="kr-proof-pill">TOPIK 3 за год</span>
+              <span class="kr-proof-pill kr-dark">грант 100%</span>
+            </div>
+          </div>
+        </div>
+        <div class="kr-checklist-box">
+          <div class="kr-checklist-title">Что внутри плана для ребят из Казахстана:</div>
+          <div class="kr-checklist-item"><span>—</span> Список вузов под ваш GPA и профиль из Алматы/Астаны</div>
+          <div class="kr-checklist-item"><span>—</span> Шаблоны эссе GKS + чек-лист документов</div>
+          <div class="kr-checklist-item"><span>—</span> Даты набора 2026 и когда подавать, чтобы успеть</div>
+          <div class="kr-checklist-foot"><span class="kr-dot" style="animation:none"></span> 17 мест — разбор бесплатно, до 30 апреля</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (NEW) -->
+    <section class="kr-section">
+      <div class="kr-eyebrow kr-fade">
+        <span class="kr-eyebrow-line"></span>
+        <span class="kr-eyebrow-text">Частые вопросы</span>
+      </div>
+      <h2 class="kr-h2 kr-fade" style="font-size:26px;margin-bottom:6px">Что обычно спрашивают</h2>
+
+      <div class="kr-faq">
+        <div class="kr-faq-item kr-fade">
+          <button class="kr-faq-q" type="button">Я совсем не знаю корейский — это проблема?<span class="kr-faq-q-icon">+</span></button>
+          <div class="kr-faq-a"><div class="kr-faq-a-inner">Нет. Часть программ принимает с уровнем TOPIK 1 или вовсе без него — язык доучивается в Корее на подготовительном курсе перед основной программой. Это нормальный путь для большинства ребят из Казахстана.</div></div>
+        </div>
+        <div class="kr-faq-item kr-fade">
+          <button class="kr-faq-q" type="button">А если не дадут грант — сколько это будет стоить?<span class="kr-faq-q-icon">+</span></button>
+          <div class="kr-faq-a"><div class="kr-faq-a-inner">На разборе считаем и вариант с грантом, и запасной вариант без него — с реальными цифрами по конкретному вузу, чтобы вы сравнили и приняли решение осознанно, без сюрпризов.</div></div>
+        </div>
+        <div class="kr-faq-item kr-fade">
+          <button class="kr-faq-q" type="button">У меня средние баллы аттестата — есть шанс?<span class="kr-faq-q-icon">+</span></button>
+          <div class="kr-faq-a"><div class="kr-faq-a-inner">Отбор на GKS смотрит не только на баллы, но и на мотивационное эссе, рекомендации и профиль в целом. На бесплатном разборе оцениваем ваш профиль и сразу говорим шансы честно.</div></div>
+        </div>
+        <div class="kr-faq-item kr-fade">
+          <button class="kr-faq-q" type="button">Сколько по времени занимает весь процесс?<span class="kr-faq-q-icon">+</span></button>
+          <div class="kr-faq-a"><div class="kr-faq-a-inner">От заявки до зачисления обычно уходит несколько месяцев: сбор документов и эссе, подача в вуз/на GKS, ожидание решения и оформление визы. Точные сроки под дедлайны набора 2026 года называем на разборе.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="kr-section" style="padding-bottom:16px">
+      <div class="kr-final kr-fade kr-shadow">
+        <div>
+          <span class="kr-final-eyebrow">Финал</span>
+          <h3 class="kr-final-h3">План поступления<br>в Корею из Казахстана</h3>
+          <p class="kr-final-p">Оставите контакт — пришлём в WhatsApp: куда податься именно вам из Алматы/Астаны, какие шансы на GKS и когда подавать.</p>
+        </div>
+        <div>
+          <div class="kr-final-box">
+            <div class="kr-final-box-title">Что вы получите бесплатно</div>
+            <ul class="kr-final-box-list">
+              <li><span>—</span> Список вузов под ваш GPA и профиль</li>
+              <li><span>—</span> Шаблоны эссе GKS + чек-лист документов</li>
+              <li><span>—</span> Даты набора 2026 и когда подавать</li>
+            </ul>
+            <a href="#popup:zayavka" class="kr-btn">Получить план в WhatsApp</a>
+            <div class="kr-final-fine">Без спама. Пришлём план для абитуриентов из Казахстана в течение дня</div>
+          </div>
+          <div class="kr-final-chips">
+            <span class="kr-final-chip">из Казахстана</span>
+            <span class="kr-final-chip">абитуриенты 2026</span>
+            <span class="kr-final-chip">17 мест</span>
+          </div>
+        </div>
+      </div>
+      <div class="kr-footnote">v9 • без React/Babel • для Тильды T123</div>
+    </section>
+  </div>
+
+  <!-- STICKY MOBILE CTA -->
+  <div class="kr-sticky-cta">
+    <span class="kr-sticky-text">17 мест на грант, весна 2026</span>
+    <a href="#popup:zayavka" class="kr-btn">Получить план</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  // fade-up on scroll
+  var els = document.querySelectorAll('.kr-fade');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) entry.target.classList.add('kr-in');
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('kr-in'); });
+  }
+
+  // faq accordion
+  document.querySelectorAll('.kr-faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.kr-faq-item');
+      var answer = item.querySelector('.kr-faq-a');
+      var isOpen = item.classList.contains('kr-open');
+      document.querySelectorAll('.kr-faq-item.kr-open').forEach(function(openItem){
+        if (openItem !== item) {
+          openItem.classList.remove('kr-open');
+          openItem.querySelector('.kr-faq-a').style.maxHeight = null;
+        }
+      });
+      if (isOpen) {
+        item.classList.remove('kr-open');
+        answer.style.maxHeight = null;
+      } else {
+        item.classList.add('kr-open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+})();
+</script>
