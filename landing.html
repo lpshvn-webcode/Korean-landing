@@ -82,9 +82,6 @@
     display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 13px;
   }
   .kr-logo-text { font-size: 12px; letter-spacing: .12em; font-weight: 700; text-transform: uppercase; }
-  .kr-city-chips { display: none; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-  @media (min-width: 768px) { .kr-city-chips { display: flex; } }
-  .kr-city-chip { background: #fff; border-radius: 999px; padding: 6px 12px; }
 
   /* hero */
   .kr-hero { padding: 40px 0 48px; }
@@ -228,21 +225,24 @@
   @media (min-width: 768px) { .kr-testimonials-grid { grid-template-columns: repeat(3,1fr); } }
   .kr-testimonial-card { background: #fff; border-radius: 20px; overflow: hidden; }
   .kr-testimonial-shot {
-    aspect-ratio: 3/4; background-size: cover; background-position: center; background-color: var(--kr-bg);
+    position: relative; aspect-ratio: 3/4; background-size: cover; background-position: center; background-color: var(--kr-bg);
   }
+  .kr-testimonial-badges { position: absolute; top: 10px; right: 10px; display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+  .kr-testimonial-badge {
+    background: var(--kr-red); color: #fff; border-radius: 999px; padding: 4px 11px; font-size: 10.5px; font-weight: 700;
+    box-shadow: 0 6px 14px -6px rgba(0,0,0,.35); white-space: nowrap;
+  }
+  .kr-testimonial-badge.kr-navy { background: var(--kr-navy); }
   .kr-testimonial-body { padding: 14px 16px 16px; }
   .kr-testimonial-tag { display: inline-flex; background: var(--kr-bg); border-radius: 999px; padding: 4px 10px; font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--kr-navy); }
-  .kr-testimonial-name { margin-top: 8px; font-size: 15px; font-weight: 700; line-height: 1.2; }
+  .kr-testimonial-name { margin-top: 8px; font-size: 15px; font-weight: 700; line-height: 1.25; }
   .kr-testimonial-quote { margin-top: 4px; font-size: 12.5px; color: var(--kr-muted); line-height: 1.35; }
-  .kr-testimonial-pills { margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
-  .kr-testimonial-pill { background: var(--kr-navy-soft); color: var(--kr-navy); border-radius: 999px; padding: 4px 10px; font-size: 10.5px; font-weight: 700; }
-  .kr-testimonial-pill.kr-dark { background: var(--kr-red); color: #fff; }
-  /* ЗАМЕНИТЕ НА ФОТО: карточка-заглушка для ещё не добавленного отзыва — удалите класс kr-testimonial-empty и вставьте реальный скриншот */
-  .kr-testimonial-card.kr-testimonial-empty { border: 2px dashed #cbd5e1; }
-  .kr-testimonial-card.kr-testimonial-empty .kr-testimonial-shot {
-    display: flex; align-items: center; justify-content: center; text-align: center;
-    color: #94a3b8; font-size: 12.5px; font-weight: 700; padding: 20px; line-height: 1.4;
+  .kr-testimonial-open {
+    margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 6px;
+    background: var(--kr-navy-soft); color: var(--kr-navy); border-radius: 999px; padding: 10px 14px;
+    font-size: 12.5px; font-weight: 700; text-decoration: none; font-family: inherit; transition: background .2s ease;
   }
+  .kr-testimonial-open:hover { background: #d7ddf0; }
   /* individual approach block (replaces the generic "what's inside the plan" checklist) */
   .kr-approach { margin-top: 16px; background: var(--kr-navy-soft); border-radius: 20px; padding: 24px; display: flex; gap: 18px; align-items: flex-start; }
   @media (max-width: 640px) { .kr-approach { flex-direction: column; } }
@@ -283,12 +283,8 @@
   @media (min-width: 768px) { .kr-final-h3 { font-size: 44px; } }
   .kr-final-p { margin: 14px auto 0; max-width: 460px; font-size: 15px; color: rgba(255,255,255,.8); line-height: 1.5; }
   .kr-final .kr-btn { margin-top: 26px; padding: 0 36px; }
-  .kr-final-fine { margin-top: 12px; font-size: 11.5px; color: rgba(255,255,255,.55); }
-  .kr-final-chips { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
-  .kr-final-chip { background: rgba(255,255,255,.12); color: #fff; border-radius: 999px; padding: 5px 12px; font-size: 11px; }
-
-  .kr-footnote { margin-top: 8px; text-align: center; font-size: 11px; color: #94A3B8; padding-bottom: 90px; }
-  @media (min-width: 768px) { .kr-footnote { padding-bottom: 24px; } }
+  .kr-final-section { padding-bottom: 90px; }
+  @media (min-width: 768px) { .kr-final-section { padding-bottom: 16px; } }
 
   /* sticky mobile cta */
   .kr-sticky-cta {
@@ -310,11 +306,6 @@
         <div class="kr-logo-badge">K</div>
         <span class="kr-logo-text">Korea • Поступление • KZ</span>
       </div>
-      <div class="kr-city-chips">
-        <span class="kr-city-chip">Алматы</span>
-        <span class="kr-city-chip">Астана</span>
-        <span class="kr-city-chip">Шымкент</span>
-      </div>
     </header>
 
     <!-- HERO -->
@@ -326,8 +317,8 @@
       <div class="kr-hero-grid">
         <div>
           <h1 class="kr-h1 kr-fade">KOREA</h1>
-          <!-- УКАЖИТЕ %: если есть реальная цифра максимальной скидки от вузов — впишите вместо "хорошими скидками", это сильнее -->
-          <p class="kr-sub kr-fade">Поступаем из Казахстана<br>в вузы Кореи — с хорошими скидками и с 0 корейского</p>
+          <!-- УКАЖИТЕ %: проверьте цифру 90% — это то, что вы прислали, но перепроверьте перед публикацией -->
+          <p class="kr-sub kr-fade">Поступите в Корею на грант<br>со скидкой до 90%</p>
 
           <div class="kr-stats kr-fade">
             <div class="kr-stat-card">
@@ -379,7 +370,6 @@
     <section class="kr-section">
       <div class="kr-h2-row kr-fade">
         <h2 class="kr-h2">ПОЧЕМУ КОРЕЯ<br>ИМЕННО СЕЙЧАС</h2>
-        <p class="kr-h2-desc">Для абитуриентов из Казахстана — 2026: больше мест, проще документы, старт с 0 корейского</p>
       </div>
 
       <div class="kr-why-tabs" role="tablist">
@@ -534,34 +524,51 @@
       <p class="kr-h2-desc kr-fade" style="max-width:520px">У кого-то — платное обучение со скидкой от вуза, у кого-то — грант. Разбираем индивидуально и честно говорим, что реально светит именно вам</p>
 
       <div class="kr-testimonials-grid" style="margin-top:20px">
+        <!-- ЗАМЕНИТЕ НА ФОТО: реальное фото Миланы вместо placehold.co -->
         <div class="kr-testimonial-card kr-fade kr-shadow-sm">
-          <!-- ЗАМЕНИТЕ НА ФОТО: вставьте реальный скриншот переписки/отзыва Айданы вместо placehold.co -->
-          <div class="kr-testimonial-shot" style="background-image:url('https://placehold.co/480x640/F2F7FF/7B5CFF?text=%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%0A%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%D0%B0%0A%D0%90%D0%B9%D0%B4%D0%B0%D0%BD%D1%8B')"></div>
-          <div class="kr-testimonial-body">
-            <span class="kr-testimonial-tag">Соцдоки 2025</span>
-            <div class="kr-testimonial-name">Айдана, Алматы → GKS в SNU, Сеул</div>
-            <div class="kr-testimonial-quote">Поступила из Казахстана после 11 класса, без корейского. Сейчас стипендия $920 и общежитие.</div>
-            <div class="kr-testimonial-pills">
-              <span class="kr-testimonial-pill">TOPIK 3 за год</span>
-              <span class="kr-testimonial-pill kr-dark">грант 100%</span>
+          <div class="kr-testimonial-shot" style="background-image:url('https://placehold.co/480x640/E6EAF6/16295E?text=%D0%A4%D0%BE%D1%82%D0%BE%0A%D0%9C%D0%B8%D0%BB%D0%B0%D0%BD%D1%8B')">
+            <div class="kr-testimonial-badges">
+              <span class="kr-testimonial-badge">−50% с каждого вуза</span>
+              <span class="kr-testimonial-badge kr-navy">3 вуза</span>
             </div>
           </div>
-        </div>
-
-        <!-- ЗАМЕНИТЕ НА ФОТО: сюда лучше всего подойдёт реальный кейс поступления на платное со скидкой — это сейчас основной путь ваших клиентов -->
-        <div class="kr-testimonial-card kr-testimonial-empty kr-fade kr-shadow-sm">
-          <div class="kr-testimonial-shot">+ Добавьте скриншот<br>отзыва (платное + скидка)</div>
           <div class="kr-testimonial-body">
             <span class="kr-testimonial-tag">Соцдоки 2025</span>
-            <div class="kr-testimonial-name" style="color:#94a3b8">Имя, город → вуз</div>
+            <div class="kr-testimonial-name">Милана → 3 топовых вуза Кореи</div>
+            <div class="kr-testimonial-quote">Отказ по итальянской визе, потерянный год — и поступление сразу в 3 топовых вуза Кореи со скидкой 50% от каждого. Корейскую визу получила без проблем.</div>
+            <a href="#popup:otziv-milana" class="kr-testimonial-open">Открыть полный отзыв →</a>
           </div>
         </div>
 
-        <div class="kr-testimonial-card kr-testimonial-empty kr-fade kr-shadow-sm">
-          <div class="kr-testimonial-shot">+ Добавьте скриншот<br>отзыва (платное + скидка)</div>
+        <!-- ЗАМЕНИТЕ НА ФОТО: реальное фото Кирилла вместо placehold.co -->
+        <div class="kr-testimonial-card kr-fade kr-shadow-sm">
+          <div class="kr-testimonial-shot" style="background-image:url('https://placehold.co/480x640/E6EAF6/16295E?text=%D0%A4%D0%BE%D1%82%D0%BE%0A%D0%9A%D0%B8%D1%80%D0%B8%D0%BB%D0%BB%D0%B0')">
+            <div class="kr-testimonial-badges">
+              <span class="kr-testimonial-badge">100% + стипендия</span>
+              <span class="kr-testimonial-badge kr-navy">SKY • SKKU</span>
+            </div>
+          </div>
           <div class="kr-testimonial-body">
             <span class="kr-testimonial-tag">Соцдоки 2025</span>
-            <div class="kr-testimonial-name" style="color:#94a3b8">Имя, город → вуз</div>
+            <div class="kr-testimonial-name">Кирилл → Yonsei, Korea University, SKKU</div>
+            <div class="kr-testimonial-quote">Поступил в Yonsei и Korea University (SKY, топ-3 Кореи) и в престижный SKKU. Korea University покрыл обучение на 100% + стипендия 2 000 000 KRW на 2 года.</div>
+            <a href="#popup:otziv-kirill" class="kr-testimonial-open">Открыть полный отзыв →</a>
+          </div>
+        </div>
+
+        <!-- ЗАМЕНИТЕ НА ФОТО: реальное фото Евы вместо placehold.co -->
+        <div class="kr-testimonial-card kr-fade kr-shadow-sm">
+          <div class="kr-testimonial-shot" style="background-image:url('https://placehold.co/480x640/E6EAF6/16295E?text=%D0%A4%D0%BE%D1%82%D0%BE%0A%D0%95%D0%B2%D1%8B')">
+            <div class="kr-testimonial-badges">
+              <span class="kr-testimonial-badge">−80% с каждого вуза</span>
+              <span class="kr-testimonial-badge kr-navy">госвузы</span>
+            </div>
+          </div>
+          <div class="kr-testimonial-body">
+            <span class="kr-testimonial-tag">Соцдоки 2025</span>
+            <div class="kr-testimonial-name">Ева → 2 государственных вуза Кореи</div>
+            <div class="kr-testimonial-quote">Поступила в 2 государственных вуза (они в 2–3 раза дешевле частных) со скидкой 80% от каждого. За первый семестр заплатила всего $400.</div>
+            <a href="#popup:otziv-eva" class="kr-testimonial-open">Открыть полный отзыв →</a>
           </div>
         </div>
       </div>
@@ -612,7 +619,7 @@
     </section>
 
     <!-- FINAL CTA -->
-    <section class="kr-section" style="padding-bottom:16px">
+    <section class="kr-section kr-final-section">
       <div class="kr-final kr-fade kr-shadow">
         <div class="kr-final-glow"></div>
         <div class="kr-final-inner">
@@ -620,15 +627,8 @@
           <h3 class="kr-final-h3">Будущее ребёнка не ждёт</h3>
           <p class="kr-final-p">Приём документов на 2026 год уже идёт, а мест в потоке немного. Оставьте заявку сейчас — чтобы потом не жалеть об упущенном шансе.</p>
           <a href="#popup:zayavka" class="kr-btn">Получить консультацию</a>
-          <div class="kr-final-fine">Без спама. Ответим и разберём ваш случай в течение дня</div>
-          <div class="kr-final-chips">
-            <span class="kr-final-chip">из Казахстана</span>
-            <span class="kr-final-chip">абитуриенты 2026</span>
-            <span class="kr-final-chip">скидки от вузов</span>
-          </div>
         </div>
       </div>
-      <div class="kr-footnote">v10 • без React/Babel • для Тильды T123</div>
     </section>
   </div>
 

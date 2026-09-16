@@ -1,0 +1,84 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>preview</title></head><body><!--
+  ПОЛНЫЙ ОТЗЫВ — Кирилл — контент для попапа (Zero Block) в Тильде.
+  ГДЕ ИСПОЛЬЗОВАТЬ: вставьте в ОТДЕЛЬНЫЙ Zero Block с типом "попап", алиас откройте в
+  настройках этого попапа и впишите ровно тот, что указан в кнопке на карточке отзыва
+  на основной странице (href="#popup:...") — тогда клик по кнопке "Открыть полный отзыв"
+  откроет именно этот попап.
+  Тип медиа: только скриншоты переписки (без видео/аудио).
+-->
+<style>
+  .kr-review * { box-sizing: border-box; }
+  .kr-review {
+    --kr-bg: #F4F6FB; --kr-ink: #0B1730; --kr-navy: #16295E; --kr-navy-deep: #0A1638;
+    --kr-navy-soft: #E6EAF6; --kr-red: #D0263B; --kr-red-deep: #A81F2C;
+    --kr-muted: #4B5670; --kr-muted2: #6B7690;
+    font-family: 'Golos Text', system-ui, -apple-system, sans-serif;
+    background: #fff; color: var(--kr-ink); -webkit-font-smoothing: antialiased;
+    max-width: 640px; margin: 0 auto; padding: 28px 20px 36px;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap');
+  .kr-review-tag { display: inline-flex; background: var(--kr-navy-soft); color: var(--kr-navy); border-radius: 999px; padding: 5px 13px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .kr-review-name { margin-top: 14px; font-size: 24px; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
+  @media (min-width: 640px) { .kr-review-name { font-size: 28px; } }
+  .kr-review-badges { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .kr-review-badge { background: var(--kr-red); color: #fff; border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 700; }
+  .kr-review-badge.kr-navy { background: var(--kr-navy); }
+  .kr-review-text { margin-top: 18px; font-size: 15px; line-height: 1.6; color: #1e293b; }
+  .kr-review-text p + p { margin-top: 10px; }
+  .kr-review-media { margin-top: 22px; }
+  .kr-review-media-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--kr-muted2); margin-bottom: 10px; }
+  /* video */
+  .kr-review-video { position: relative; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; background: linear-gradient(135deg,var(--kr-navy) 0%,var(--kr-navy-deep) 100%); display: flex; align-items: center; justify-content: center; }
+  .kr-review-video-play { width: 64px; height: 64px; border-radius: 999px; background: rgba(255,255,255,.15); display: grid; place-items: center; }
+  .kr-review-video-play svg { width: 26px; height: 26px; color: #fff; margin-left: 3px; }
+  .kr-review-video-note { position: absolute; bottom: 12px; left: 12px; right: 12px; color: rgba(255,255,255,.7); font-size: 11.5px; text-align: center; }
+  /* audio */
+  .kr-review-audio { background: var(--kr-navy-soft); border-radius: 16px; padding: 18px; display: flex; align-items: center; gap: 14px; }
+  .kr-review-audio-icon { flex: none; width: 44px; height: 44px; border-radius: 999px; background: var(--kr-navy); display: grid; place-items: center; }
+  .kr-review-audio-icon svg { width: 20px; height: 20px; color: #fff; }
+  .kr-review-audio audio { width: 100%; }
+  /* screenshots */
+  .kr-review-shots { margin-top: 18px; display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
+  .kr-review-shots img { flex: none; width: 160px; aspect-ratio: 3/5.5; object-fit: cover; border-radius: 14px; background: var(--kr-bg); box-shadow: 0 10px 20px -10px rgba(22,41,94,.25); }
+  .kr-review-cta { margin-top: 28px; text-align: center; }
+  .kr-review-cta-text { font-size: 13px; color: var(--kr-muted); margin-bottom: 12px; }
+  .kr-review-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--kr-red); color: #fff; border-radius: 999px; height: 50px; padding: 0 30px;
+    font-weight: 700; font-size: 14.5px; text-decoration: none; border: none; cursor: pointer;
+    transition: background .15s ease;
+  }
+  .kr-review-btn:hover { background: var(--kr-red-deep); }
+</style>
+
+<div class="kr-review">
+  <span class="kr-review-tag">Соцдоки 2025</span>
+  <div class="kr-review-name">Кирилл → Yonsei, Korea University, SKKU</div>
+  <div class="kr-review-badges">
+            <span class="kr-review-badge">100% + стипендия 2 года</span>
+            <span class="kr-review-badge kr-navy">SKY</span>
+            <span class="kr-review-badge kr-navy">SKKU −50%</span>
+  </div>
+
+  <div class="kr-review-text">
+          <p>Кирилл поступил в 2 университета из SKY (топ-3 Кореи) — Yonsei и Korea University, а также в один из старейших и престижных вузов Кореи — SKKU, выпускников которого легко берут в Samsung.</p>
+          <p>SKKU дал скидку 50%. Korea University — 100% покрытие обучения на 2 года + стипендия 2 000 000 KRW в течение этих же 2 лет.</p>
+  </div>
+
+  <div class="kr-review-media">
+    <div class="kr-review-media-label">Скриншоты переписки</div>
+    <!-- ЗАМЕНИТЕ НА ФОТО: реальные скриншоты переписки/писем о зачислении вместо placehold.co -->
+    <div class="kr-review-shots">
+      <img src="https://placehold.co/480x860/E6EAF6/16295E?text=%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%201" alt="Скриншот переписки Кирилла">
+      <img src="https://placehold.co/480x860/E6EAF6/16295E?text=%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%202" alt="Скриншот переписки Кирилла">
+      <img src="https://placehold.co/480x860/E6EAF6/16295E?text=%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%203" alt="Скриншот переписки Кирилла">
+      <img src="https://placehold.co/480x860/E6EAF6/16295E?text=%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%204" alt="Скриншот переписки Кирилла">
+    </div>
+  </div>
+
+  <div class="kr-review-cta">
+    <div class="kr-review-cta-text">Хотите так же — со скидкой и без лишних нервов?</div>
+    <a href="#popup:zayavka" class="kr-review-btn">Оставить заявку</a>
+  </div>
+</div>
+</body></html>
