@@ -185,38 +185,28 @@
   @media (min-width: 768px) { .kr-step-arrow { display: block; } }
   .kr-step:last-child .kr-step-arrow { display: none; }
 
-  /* cities */
-  .kr-cities-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-  @media (min-width: 900px) { .kr-cities-grid { grid-template-columns: repeat(3,1fr); } }
-  .kr-city-card {
-    position: relative; border-radius: 24px; overflow: hidden; height: 480px;
-    display: flex; flex-direction: column; padding: 20px; color: #fff; background: #0F172A;
+  /* universities — auto-scrolling marquee */
+  .kr-uni-marquee {
+    margin-top: 20px; overflow: hidden; position: relative;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
   }
-  /* ЗАМЕНИТЕ НА ФОТО: подставьте реальное фото города вместо URL с placehold.co через background-image */
-  .kr-city-photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
-  .kr-city-photo.kr-city-photo-seoul { background-image: url('https://placehold.co/900x1200/1e293b/475569?text=SEOUL%0A%28%D1%84%D0%BE%D1%82%D0%BE+%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0%29'); }
-  .kr-city-photo.kr-city-photo-busan { background-image: url('https://placehold.co/900x1200/1e3a8a/60a5fa?text=BUSAN%0A%28%D1%84%D0%BE%D1%82%D0%BE+%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0%29'); }
-  .kr-city-photo.kr-city-photo-daejeon { background-image: url('https://placehold.co/900x1200/4c1d95/c4b5fd?text=DAEJEON%0A%28%D1%84%D0%BE%D1%82%D0%BE+%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0%29'); }
-  /* цветная плашка поверх фото, ~35% непрозрачности — держит бренд-цвет и читаемость текста */
-  .kr-city-overlay { position: absolute; inset: 0; opacity: .38; }
-  .kr-city-overlay.kr-city-overlay-seoul { background: linear-gradient(160deg,#334155 0%,#0F172A 60%,#000 100%); }
-  .kr-city-overlay.kr-city-overlay-busan { background: linear-gradient(140deg,#1B3F91 0%,#2C5CC5 55%,#4C7BE0 100%); }
-  .kr-city-overlay.kr-city-overlay-daejeon { background: linear-gradient(140deg,#0A1638 0%,#16295E 55%,#2C5CC5 100%); }
-  /* дополнительное затемнение снизу — чтобы белый текст и панель всегда читались поверх любого фото */
-  .kr-city-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.55) 100%); }
-  .kr-city-content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; padding-top: 22px; }
-  .kr-city-top { display: flex; justify-content: space-between; align-items: flex-start; }
-  .kr-city-name { font-size: 48px; font-weight: 800; letter-spacing: -0.05em; line-height: .85; margin: 0; }
-  @media (min-width: 768px) { .kr-city-name { font-size: 58px; } }
-  .kr-city-badge { background: #fff; color: #000; font-size: 10px; font-weight: 700; padding: 5px 10px; border-radius: 999px; flex: none; }
-  .kr-city-tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
-  .kr-city-tag { background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35); color: #fff; font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 999px; }
-  .kr-city-note { margin-top: 16px; font-size: 13px; line-height: 1.4; max-width: 230px; opacity: .92; font-weight: 500; }
-  .kr-city-panel { margin-top: auto; background: #fff; color: var(--kr-ink); border-radius: 16px; padding: 16px; }
-  .kr-city-panel-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--kr-navy); }
-  .kr-city-panel ul { margin: 8px 0 0; padding: 0; list-style: none; font-size: 13px; font-weight: 600; line-height: 1.4; }
-  .kr-city-panel li { margin-bottom: 2px; }
-  .kr-city-panel-foot { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(0,0,0,.08); display: flex; justify-content: space-between; font-size: 11.5px; }
+  .kr-uni-track { display: flex; gap: 16px; width: max-content; animation: kr-marquee 52s linear infinite; }
+  .kr-uni-marquee:hover .kr-uni-track { animation-play-state: paused; }
+  @keyframes kr-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .kr-uni-card {
+    flex: none; width: 290px; background: #fff; border-radius: 20px; padding: 20px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .kr-uni-top { display: flex; align-items: center; gap: 12px; }
+  /* ЗАМЕНИТЕ НА ЛОГОТИП: положите сюда <img src="..." alt="..."> с официальным логотипом вуза
+     (скачайте с сайта/пресс-страницы университета и загрузите через медиа-менеджер Тильды) —
+     сейчас вместо него буква-монограмма, реальных логотипов у меня не было чем подтвердить/скачать */
+  .kr-uni-logo { flex: none; width: 48px; height: 48px; border-radius: 12px; background: var(--kr-navy-soft); display: grid; place-items: center; font-weight: 800; font-size: 12px; color: var(--kr-navy); overflow: hidden; }
+  .kr-uni-name { font-size: 15px; font-weight: 700; line-height: 1.2; }
+  .kr-uni-meta { font-size: 10.5px; color: var(--kr-muted2); font-weight: 600; margin-top: 1px; }
+  .kr-uni-fact { font-size: 12.5px; line-height: 1.4; color: #1e293b; }
+  .kr-uni-badge { align-self: flex-start; background: var(--kr-red); color: #fff; border-radius: 999px; padding: 4px 11px; font-size: 10.5px; font-weight: 700; }
 
   /* proof — testimonial screenshots */
   .kr-testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
@@ -449,66 +439,161 @@
       </div>
     </section>
 
-    <!-- CITIES -->
+    <!-- UNIVERSITIES -->
     <section class="kr-section">
       <div class="kr-eyebrow kr-fade">
         <span class="kr-eyebrow-line"></span>
-        <span class="kr-eyebrow-text">Города • выбрать кампус</span>
+        <span class="kr-eyebrow-text">Вузы-партнёры</span>
       </div>
+      <h2 class="kr-h2 kr-fade" style="font-size:26px;margin-bottom:6px">Куда реально поступают наши студенты</h2>
 
-      <div class="kr-cities-grid">
-        <div class="kr-city-card kr-fade kr-shadow">
-          <div class="kr-city-photo kr-city-photo-seoul"></div>
-          <div class="kr-city-overlay kr-city-overlay-seoul"></div>
-          <div class="kr-city-scrim"></div>
-          <div class="kr-city-content">
-            <div class="kr-city-top">
-              <h3 class="kr-city-name">SEOUL</h3>
-              <span class="kr-city-badge">столица</span>
-            </div>
-            <div class="kr-city-tags">
-              <span class="kr-city-tag">IT и стартапы</span><span class="kr-city-tag">бизнес</span><span class="kr-city-tag">медиа</span>
-            </div>
-            <div class="kr-city-panel">
-              <div class="kr-city-panel-label">Где учиться</div>
-              <ul><li>• SNU, Yonsei, Korea University</li><li>• Жизнь в центре Азии</li><li>• Много стажировок</li></ul>
-              <div class="kr-city-panel-foot"><span style="color:#64748B">Для ребят из Казахстана</span><span style="font-weight:800">от 17 лет →</span></div>
+      <!-- Бегущая строка: список вузов продублирован дважды для бесшовной прокрутки, вторая копия скрыта от скринридеров -->
+      <div class="kr-uni-marquee kr-fade">
+        <div class="kr-uni-track">
+        <div class="kr-uni-card">
+          <div class="kr-uni-top">
+            <!-- ЗАМЕНИТЕ НА ЛОГОТИП Pusan National University -->
+            <div class="kr-uni-logo">PNU</div>
+            <div>
+              <div class="kr-uni-name">Pusan National University</div>
+              <div class="kr-uni-meta">Top 500 мира · Top 100 Азии</div>
             </div>
           </div>
+          <div class="kr-uni-fact">Партнёры — Samsung, Hyundai, LG, POSCO. Спецтрек приёма для Казахстана с выездными экзаменами.</div>
+          <span class="kr-uni-badge">Platinum — 100% на 4 года</span>
         </div>
-
-        <div class="kr-city-card kr-fade kr-shadow">
-          <div class="kr-city-photo kr-city-photo-busan"></div>
-          <div class="kr-city-overlay kr-city-overlay-busan"></div>
-          <div class="kr-city-scrim"></div>
-          <div class="kr-city-content">
-            <h3 class="kr-city-name">BUSAN</h3>
-            <div class="kr-city-tags">
-              <span class="kr-city-tag">море</span><span class="kr-city-tag">логистика</span><span class="kr-city-tag">кино</span>
-            </div>
-            <div class="kr-city-note">Второй город Кореи — кампусы у моря, дешевле Сеула на 30%</div>
-            <div class="kr-city-panel">
-              <div class="kr-city-panel-label">Почему выбирают</div>
-              <ul><li>• PNU, PKNU — инженерия и море</li><li>• Обучение дешевле, скидки доступнее</li><li>• Старт из Казахстана без TOPIK</li></ul>
+        <div class="kr-uni-card">
+          <div class="kr-uni-top">
+            <!-- ЗАМЕНИТЕ НА ЛОГОТИП Pukyong National University -->
+            <div class="kr-uni-logo">PKNU</div>
+            <div>
+              <div class="kr-uni-name">Pukyong National University</div>
+              <div class="kr-uni-meta">Top 20–25 вузов Кореи</div>
             </div>
           </div>
+          <div class="kr-uni-fact">2-й по значимости госвуз Пусана — тесно связан с портом и заводами Hyundai и Samsung Heavy Industries.</div>
+          <span class="kr-uni-badge">Грант — 100% + мед. страховка</span>
         </div>
-
-        <div class="kr-city-card kr-fade kr-shadow">
-          <div class="kr-city-photo kr-city-photo-daejeon"></div>
-          <div class="kr-city-overlay kr-city-overlay-daejeon"></div>
-          <div class="kr-city-scrim"></div>
-          <div class="kr-city-content">
-            <h3 class="kr-city-name">DAEJEON</h3>
-            <div class="kr-city-tags">
-              <span class="kr-city-tag">наука</span><span class="kr-city-tag">KAIST</span><span class="kr-city-tag">R&D</span>
-            </div>
-            <div class="kr-city-note">Кремниевая долина Кореи — KAIST и исследовательские центры</div>
-            <div class="kr-city-panel">
-              <div class="kr-city-panel-label">Кому подойдёт</div>
-              <ul><li>• KAIST, CNU — AI, роботы, био</li><li>• Лаборатории Samsung и ETRI</li><li>• Из Казахстана с физмат базой</li></ul>
+        <div class="kr-uni-card">
+          <div class="kr-uni-top">
+            <!-- ЗАМЕНИТЕ НА ЛОГОТИП Sungkyunkwan University -->
+            <div class="kr-uni-logo">SKKU</div>
+            <div>
+              <div class="kr-uni-name">Sungkyunkwan University</div>
+              <div class="kr-uni-meta">Top 100 мира · Top 5 Кореи</div>
             </div>
           </div>
+          <div class="kr-uni-fact">Стратегический инвестор — Samsung: свои факультеты и приоритет при трудоустройстве в Samsung и SK Hynix.</div>
+          <span class="kr-uni-badge">100% + общежитие + 570 000₩/мес</span>
+        </div>
+        <div class="kr-uni-card">
+          <div class="kr-uni-top">
+            <!-- ЗАМЕНИТЕ НА ЛОГОТИП Kwangwoon University -->
+            <div class="kr-uni-logo">KWU</div>
+            <div>
+              <div class="kr-uni-name">Kwangwoon University</div>
+              <div class="kr-uni-meta">Технопарк · робототехника</div>
+            </div>
+          </div>
+          <div class="kr-uni-fact">Учитесь на «хорошо» и «удовлетворительно» — и всё равно получаете скидку 40–50% на обучение.</div>
+          <span class="kr-uni-badge">Скидка до 100% по GPA</span>
+        </div>
+        <div class="kr-uni-card">
+          <div class="kr-uni-top">
+            <!-- ЗАМЕНИТЕ НА ЛОГОТИП Hanyang University -->
+            <div class="kr-uni-logo">HYU</div>
+            <div>
+              <div class="kr-uni-name">Hanyang University</div>
+              <div class="kr-uni-meta">Top 150 мира · Top 5–7 Кореи</div>
+            </div>
+          </div>
+          <div class="kr-uni-fact">№1 в Корее по числу выпускников — CEO и топ-менеджеров крупнейших корпораций.</div>
+          <span class="kr-uni-badge">TOPIK 6 = 100% покрытие</span>
+        </div>
+        <div class="kr-uni-card">
+          <div class="kr-uni-top">
+            <!-- ЗАМЕНИТЕ НА ЛОГОТИП Inha University -->
+            <div class="kr-uni-logo">INHA</div>
+            <div>
+              <div class="kr-uni-name">Inha University</div>
+              <div class="kr-uni-meta">Top 500 мира · Top 10–15 Кореи</div>
+            </div>
+          </div>
+          <div class="kr-uni-fact">Вузом управляет Hanjin Group — владелец Korean Air. Прямой путь в авиацию и логистику.</div>
+          <span class="kr-uni-badge">Обучение + общежитие + стипендия</span>
+        </div>
+        <div class="kr-uni-card" aria-hidden="true">
+          <div class="kr-uni-top">
+            <!-- ЗАМЕНИТЕ НА ЛОГОТИП Pusan National University -->
+            <div class="kr-uni-logo">PNU</div>
+            <div>
+              <div class="kr-uni-name">Pusan National University</div>
+              <div class="kr-uni-meta">Top 500 мира · Top 100 Азии</div>
+            </div>
+          </div>
+          <div class="kr-uni-fact">Партнёры — Samsung, Hyundai, LG, POSCO. Спецтрек приёма для Казахстана с выездными экзаменами.</div>
+          <span class="kr-uni-badge">Platinum — 100% на 4 года</span>
+        </div>
+        <div class="kr-uni-card" aria-hidden="true">
+          <div class="kr-uni-top">
+            <!-- ЗАМЕНИТЕ НА ЛОГОТИП Pukyong National University -->
+            <div class="kr-uni-logo">PKNU</div>
+            <div>
+              <div class="kr-uni-name">Pukyong National University</div>
+              <div class="kr-uni-meta">Top 20–25 вузов Кореи</div>
+            </div>
+          </div>
+          <div class="kr-uni-fact">2-й по значимости госвуз Пусана — тесно связан с портом и заводами Hyundai и Samsung Heavy Industries.</div>
+          <span class="kr-uni-badge">Грант — 100% + мед. страховка</span>
+        </div>
+        <div class="kr-uni-card" aria-hidden="true">
+          <div class="kr-uni-top">
+            <!-- ЗАМЕНИТЕ НА ЛОГОТИП Sungkyunkwan University -->
+            <div class="kr-uni-logo">SKKU</div>
+            <div>
+              <div class="kr-uni-name">Sungkyunkwan University</div>
+              <div class="kr-uni-meta">Top 100 мира · Top 5 Кореи</div>
+            </div>
+          </div>
+          <div class="kr-uni-fact">Стратегический инвестор — Samsung: свои факультеты и приоритет при трудоустройстве в Samsung и SK Hynix.</div>
+          <span class="kr-uni-badge">100% + общежитие + 570 000₩/мес</span>
+        </div>
+        <div class="kr-uni-card" aria-hidden="true">
+          <div class="kr-uni-top">
+            <!-- ЗАМЕНИТЕ НА ЛОГОТИП Kwangwoon University -->
+            <div class="kr-uni-logo">KWU</div>
+            <div>
+              <div class="kr-uni-name">Kwangwoon University</div>
+              <div class="kr-uni-meta">Технопарк · робототехника</div>
+            </div>
+          </div>
+          <div class="kr-uni-fact">Учитесь на «хорошо» и «удовлетворительно» — и всё равно получаете скидку 40–50% на обучение.</div>
+          <span class="kr-uni-badge">Скидка до 100% по GPA</span>
+        </div>
+        <div class="kr-uni-card" aria-hidden="true">
+          <div class="kr-uni-top">
+            <!-- ЗАМЕНИТЕ НА ЛОГОТИП Hanyang University -->
+            <div class="kr-uni-logo">HYU</div>
+            <div>
+              <div class="kr-uni-name">Hanyang University</div>
+              <div class="kr-uni-meta">Top 150 мира · Top 5–7 Кореи</div>
+            </div>
+          </div>
+          <div class="kr-uni-fact">№1 в Корее по числу выпускников — CEO и топ-менеджеров крупнейших корпораций.</div>
+          <span class="kr-uni-badge">TOPIK 6 = 100% покрытие</span>
+        </div>
+        <div class="kr-uni-card" aria-hidden="true">
+          <div class="kr-uni-top">
+            <!-- ЗАМЕНИТЕ НА ЛОГОТИП Inha University -->
+            <div class="kr-uni-logo">INHA</div>
+            <div>
+              <div class="kr-uni-name">Inha University</div>
+              <div class="kr-uni-meta">Top 500 мира · Top 10–15 Кореи</div>
+            </div>
+          </div>
+          <div class="kr-uni-fact">Вузом управляет Hanjin Group — владелец Korean Air. Прямой путь в авиацию и логистику.</div>
+          <span class="kr-uni-badge">Обучение + общежитие + стипендия</span>
+        </div>
         </div>
       </div>
     </section>
