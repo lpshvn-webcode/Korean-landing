@@ -76,12 +76,10 @@
 
   /* header */
   .kr-header { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; }
-  .kr-logo { display: flex; align-items: center; gap: 8px; }
-  .kr-logo-badge {
-    width: 32px; height: 32px; border-radius: 999px; background: var(--kr-navy);
-    display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 13px;
-  }
-  .kr-logo-text { font-size: 12px; letter-spacing: .12em; font-weight: 700; text-transform: uppercase; }
+  .kr-logo { display: flex; align-items: center; }
+  .kr-logo-wordmark { font-size: 21px; font-weight: 800; letter-spacing: -0.02em; }
+  .kr-logo-wordmark .kr-logo-soul { color: var(--kr-red); }
+  .kr-logo-wordmark .kr-logo-korean { color: var(--kr-navy); }
 
   /* hero */
   .kr-hero { padding: 40px 0 48px; }
@@ -302,8 +300,10 @@
     <!-- HEADER -->
     <header class="kr-header">
       <div class="kr-logo">
-        <div class="kr-logo-badge">K</div>
-        <span class="kr-logo-text">Korea • Поступление • KZ</span>
+        <!-- Логотип собран текстом (шрифт+цвета сайта), а не картинкой — легче и чётче на ретине.
+             Если нужен именно файл логотипа с вашим кернингом/шрифтом — пришлите файл или ссылку,
+             заменю на <img>. -->
+        <span class="kr-logo-wordmark"><span class="kr-logo-soul">Soul</span><span class="kr-logo-korean">Korean</span></span>
       </div>
     </header>
 
@@ -354,7 +354,7 @@
                 <div class="kr-avatars">
                   <div class="kr-avatar" style="background:#E6EAF6">A</div>
                   <div class="kr-avatar" style="background:#16295E;color:#fff">K</div>
-                  <div class="kr-avatar" style="background:#000;color:#fff">+12</div>
+                  <div class="kr-avatar" style="background:#000;color:#fff;width:auto;min-width:28px;padding:0 7px;font-size:9.5px">+136</div>
                 </div>
                 <div class="kr-visual-badge-text">Поступили из Казахстана в 2025 →</div>
               </div>
