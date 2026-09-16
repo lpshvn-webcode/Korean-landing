@@ -204,7 +204,7 @@
   @keyframes kr-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   .kr-uni-card {
-    position: relative; flex: none; width: 300px; height: 480px; border-radius: 24px; overflow: hidden;
+    position: relative; flex: none; width: 300px; height: 320px; border-radius: 24px; overflow: hidden;
     display: flex; flex-direction: column; padding: 20px; color: #fff; background: #0F172A;
   }
   /* ЗАМЕНИТЕ НА ФОТО: подставьте реальное фото кампуса вместо URL с placehold.co через background-image */
@@ -224,10 +224,8 @@
   .kr-uni-tag { background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35); color: #fff; font-size: 10.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
   .kr-uni-panel { margin-top: auto; background: #fff; color: var(--kr-ink); border-radius: 16px; padding: 14px; }
   .kr-uni-panel-label { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--kr-navy); }
-  .kr-uni-panel-desc { margin-top: 6px; font-size: 12.5px; line-height: 1.4; color: #1e293b; }
-  .kr-uni-panel ul { margin: 8px 0 0; padding: 0; list-style: none; font-size: 12px; font-weight: 600; line-height: 1.4; }
-  .kr-uni-panel li { margin-bottom: 1px; }
-  .kr-uni-panel-foot { margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(0,0,0,.08); }
+  .kr-uni-panel-fact { margin-top: 5px; font-size: 12.5px; line-height: 1.35; color: #1e293b; font-weight: 600; }
+  .kr-uni-panel-foot { margin-top: 9px; padding-top: 9px; border-top: 1px solid rgba(0,0,0,.08); }
   .kr-uni-stat { display: inline-flex; background: var(--kr-red); color: #fff; border-radius: 999px; padding: 4px 10px; font-size: 10.5px; font-weight: 700; }
 
   /* proof — testimonial screenshots */
@@ -484,9 +482,8 @@
             </div>
             <div class="kr-uni-tags"><span class="kr-uni-tag">Samsung</span><span class="kr-uni-tag">Hyundai</span><span class="kr-uni-tag">LG</span></div>
             <div class="kr-uni-panel">
-              <div class="kr-uni-panel-label">Стипендия Platinum</div>
-              <p class="kr-uni-panel-desc">Флагманский государственный вуз Пусана, партнёры — Samsung, Hyundai, LG и POSCO. Для абитуриентов из Казахстана — отдельный трек приёма с выездными экзаменами.</p>
-              <ul><li>• 100% обучения на все 4 года</li><li>• При GPA от 3.5</li><li>• + подъёмные 2 000 000 ₩</li></ul>
+              <div class="kr-uni-panel-label">Platinum грант</div>
+              <div class="kr-uni-panel-fact">Спецтрек приёма с выездными экзаменами для Казахстана</div>
               <div class="kr-uni-panel-foot"><span class="kr-uni-stat">100% · 4 года</span></div>
             </div>
           </div>
@@ -503,9 +500,8 @@
             </div>
             <div class="kr-uni-tags"><span class="kr-uni-tag">порт Пусана</span><span class="kr-uni-tag">Hyundai</span><span class="kr-uni-tag">Samsung Heavy</span></div>
             <div class="kr-uni-panel">
-              <div class="kr-uni-panel-label">Грант на 4 года</div>
-              <p class="kr-uni-panel-desc">Второй по значимости госвуз Пусана, тесно связан с портом и заводами Hyundai и Samsung Heavy Industries. Казахстан — среди приоритетных стран гранта Global Pukyong.</p>
-              <ul><li>• 100% обучения</li><li>• + медицинская страховка</li><li>• GPA от 85–90%</li></ul>
+              <div class="kr-uni-panel-label">Global Pukyong</div>
+              <div class="kr-uni-panel-fact">Казахстан — среди приоритетных стран программы</div>
               <div class="kr-uni-panel-foot"><span class="kr-uni-stat">100% + страховка</span></div>
             </div>
           </div>
@@ -523,8 +519,7 @@
             <div class="kr-uni-tags"><span class="kr-uni-tag">Samsung</span><span class="kr-uni-tag">с 1398 года</span><span class="kr-uni-tag">SK Hynix</span></div>
             <div class="kr-uni-panel">
               <div class="kr-uni-panel-label">Samsung Scholarship</div>
-              <p class="kr-uni-panel-desc">Старейший вуз Кореи, стратегический инвестор — Samsung. Свои факультеты и приоритет при трудоустройстве в Samsung и SK Hynix.</p>
-              <ul><li>• 100% обучения на 4 года</li><li>• + общежитие</li><li>• + 570 000 ₩/мес</li></ul>
+              <div class="kr-uni-panel-fact">Инвестор вуза — Samsung, приоритет при трудоустройстве</div>
               <div class="kr-uni-panel-foot"><span class="kr-uni-stat">100% + общежитие</span></div>
             </div>
           </div>
@@ -542,8 +537,7 @@
             <div class="kr-uni-tags"><span class="kr-uni-tag">LG</span><span class="kr-uni-tag">Samsung</span><span class="kr-uni-tag">SK Hynix</span></div>
             <div class="kr-uni-panel">
               <div class="kr-uni-panel-label">Скидка по GPA</div>
-              <p class="kr-uni-panel-desc">Первый в Корее факультет электронной инженерии, сильная школа IT и робототехники. Скидка сохраняется даже при среднем балле «хорошо» и «удовлетворительно».</p>
-              <ul><li>• GPA 4.0+ = 100%</li><li>• GPA 3.0+ = 50%</li><li>• GPA 2.5+ = 40%</li></ul>
+              <div class="kr-uni-panel-fact">Скидка даже при среднем балле «хорошо»</div>
               <div class="kr-uni-panel-foot"><span class="kr-uni-stat">скидка до 100%</span></div>
             </div>
           </div>
@@ -561,8 +555,7 @@
             <div class="kr-uni-tags"><span class="kr-uni-tag">№1 по CEO</span><span class="kr-uni-tag">стартапы</span><span class="kr-uni-tag">инженерия</span></div>
             <div class="kr-uni-panel">
               <div class="kr-uni-panel-label">Языковой грант</div>
-              <p class="kr-uni-panel-desc">Первый частный инженерный институт Кореи. №1 в стране по числу выпускников — CEO и топ-менеджеров крупных корпораций.</p>
-              <ul><li>• TOPIK 6 = 100%</li><li>• TOPIK 5 = 50%</li><li>• IELTS 6.5+ = 30%</li></ul>
+              <div class="kr-uni-panel-fact">№1 в Корее по выпускникам-CEO</div>
               <div class="kr-uni-panel-foot"><span class="kr-uni-stat">TOPIK 6 = 100%</span></div>
             </div>
           </div>
@@ -580,8 +573,7 @@
             <div class="kr-uni-tags"><span class="kr-uni-tag">Korean Air</span><span class="kr-uni-tag">Hanjin Group</span><span class="kr-uni-tag">логистика</span></div>
             <div class="kr-uni-panel">
               <div class="kr-uni-panel-label">Полное сопровождение</div>
-              <p class="kr-uni-panel-desc">Управляется Hanjin Group — владельцем авиакомпании Korean Air. Прямой путь на стажировки в авиацию, логистику и порт Инчхон.</p>
-              <ul><li>• Обучение</li><li>• + общежитие</li><li>• + стипендия 300 000 ₩</li></ul>
+              <div class="kr-uni-panel-fact">Прямой путь в Korean Air и логистику</div>
               <div class="kr-uni-panel-foot"><span class="kr-uni-stat">обучение + общежитие</span></div>
             </div>
           </div>
@@ -598,9 +590,8 @@
             </div>
             <div class="kr-uni-tags"><span class="kr-uni-tag">Samsung</span><span class="kr-uni-tag">Hyundai</span><span class="kr-uni-tag">LG</span></div>
             <div class="kr-uni-panel">
-              <div class="kr-uni-panel-label">Стипендия Platinum</div>
-              <p class="kr-uni-panel-desc">Флагманский государственный вуз Пусана, партнёры — Samsung, Hyundai, LG и POSCO. Для абитуриентов из Казахстана — отдельный трек приёма с выездными экзаменами.</p>
-              <ul><li>• 100% обучения на все 4 года</li><li>• При GPA от 3.5</li><li>• + подъёмные 2 000 000 ₩</li></ul>
+              <div class="kr-uni-panel-label">Platinum грант</div>
+              <div class="kr-uni-panel-fact">Спецтрек приёма с выездными экзаменами для Казахстана</div>
               <div class="kr-uni-panel-foot"><span class="kr-uni-stat">100% · 4 года</span></div>
             </div>
           </div>
@@ -617,9 +608,8 @@
             </div>
             <div class="kr-uni-tags"><span class="kr-uni-tag">порт Пусана</span><span class="kr-uni-tag">Hyundai</span><span class="kr-uni-tag">Samsung Heavy</span></div>
             <div class="kr-uni-panel">
-              <div class="kr-uni-panel-label">Грант на 4 года</div>
-              <p class="kr-uni-panel-desc">Второй по значимости госвуз Пусана, тесно связан с портом и заводами Hyundai и Samsung Heavy Industries. Казахстан — среди приоритетных стран гранта Global Pukyong.</p>
-              <ul><li>• 100% обучения</li><li>• + медицинская страховка</li><li>• GPA от 85–90%</li></ul>
+              <div class="kr-uni-panel-label">Global Pukyong</div>
+              <div class="kr-uni-panel-fact">Казахстан — среди приоритетных стран программы</div>
               <div class="kr-uni-panel-foot"><span class="kr-uni-stat">100% + страховка</span></div>
             </div>
           </div>
@@ -637,8 +627,7 @@
             <div class="kr-uni-tags"><span class="kr-uni-tag">Samsung</span><span class="kr-uni-tag">с 1398 года</span><span class="kr-uni-tag">SK Hynix</span></div>
             <div class="kr-uni-panel">
               <div class="kr-uni-panel-label">Samsung Scholarship</div>
-              <p class="kr-uni-panel-desc">Старейший вуз Кореи, стратегический инвестор — Samsung. Свои факультеты и приоритет при трудоустройстве в Samsung и SK Hynix.</p>
-              <ul><li>• 100% обучения на 4 года</li><li>• + общежитие</li><li>• + 570 000 ₩/мес</li></ul>
+              <div class="kr-uni-panel-fact">Инвестор вуза — Samsung, приоритет при трудоустройстве</div>
               <div class="kr-uni-panel-foot"><span class="kr-uni-stat">100% + общежитие</span></div>
             </div>
           </div>
@@ -656,8 +645,7 @@
             <div class="kr-uni-tags"><span class="kr-uni-tag">LG</span><span class="kr-uni-tag">Samsung</span><span class="kr-uni-tag">SK Hynix</span></div>
             <div class="kr-uni-panel">
               <div class="kr-uni-panel-label">Скидка по GPA</div>
-              <p class="kr-uni-panel-desc">Первый в Корее факультет электронной инженерии, сильная школа IT и робототехники. Скидка сохраняется даже при среднем балле «хорошо» и «удовлетворительно».</p>
-              <ul><li>• GPA 4.0+ = 100%</li><li>• GPA 3.0+ = 50%</li><li>• GPA 2.5+ = 40%</li></ul>
+              <div class="kr-uni-panel-fact">Скидка даже при среднем балле «хорошо»</div>
               <div class="kr-uni-panel-foot"><span class="kr-uni-stat">скидка до 100%</span></div>
             </div>
           </div>
@@ -675,8 +663,7 @@
             <div class="kr-uni-tags"><span class="kr-uni-tag">№1 по CEO</span><span class="kr-uni-tag">стартапы</span><span class="kr-uni-tag">инженерия</span></div>
             <div class="kr-uni-panel">
               <div class="kr-uni-panel-label">Языковой грант</div>
-              <p class="kr-uni-panel-desc">Первый частный инженерный институт Кореи. №1 в стране по числу выпускников — CEO и топ-менеджеров крупных корпораций.</p>
-              <ul><li>• TOPIK 6 = 100%</li><li>• TOPIK 5 = 50%</li><li>• IELTS 6.5+ = 30%</li></ul>
+              <div class="kr-uni-panel-fact">№1 в Корее по выпускникам-CEO</div>
               <div class="kr-uni-panel-foot"><span class="kr-uni-stat">TOPIK 6 = 100%</span></div>
             </div>
           </div>
@@ -694,8 +681,7 @@
             <div class="kr-uni-tags"><span class="kr-uni-tag">Korean Air</span><span class="kr-uni-tag">Hanjin Group</span><span class="kr-uni-tag">логистика</span></div>
             <div class="kr-uni-panel">
               <div class="kr-uni-panel-label">Полное сопровождение</div>
-              <p class="kr-uni-panel-desc">Управляется Hanjin Group — владельцем авиакомпании Korean Air. Прямой путь на стажировки в авиацию, логистику и порт Инчхон.</p>
-              <ul><li>• Обучение</li><li>• + общежитие</li><li>• + стипендия 300 000 ₩</li></ul>
+              <div class="kr-uni-panel-fact">Прямой путь в Korean Air и логистику</div>
               <div class="kr-uni-panel-foot"><span class="kr-uni-stat">обучение + общежитие</span></div>
             </div>
           </div>
