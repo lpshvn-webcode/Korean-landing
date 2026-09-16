@@ -63,7 +63,7 @@
   @keyframes kr-pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
   .kr-dot { animation: kr-pulse 1.8s ease-in-out infinite; }
 
-  .kr-fade { opacity: 0; transform: translateY(20px); transition: all .7s cubic-bezier(.16,1,.3,1); }
+  .kr-fade { opacity: 0; transform: translateY(10px); transition: opacity .32s ease-out, transform .32s ease-out; }
   .kr-fade.kr-in { opacity: 1; transform: translateY(0); }
 
   .kr-shadow { box-shadow: 0 20px 40px -12px rgba(22,41,94,.2), 0 8px 16px -8px rgba(15,23,42,.08); }
@@ -640,7 +640,7 @@
       entries.forEach(function(entry){
         if (entry.isIntersecting) entry.target.classList.add('kr-in');
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.01, rootMargin: '0px 0px -8% 0px' });
     els.forEach(function(el){ io.observe(el); });
   } else {
     els.forEach(function(el){ el.classList.add('kr-in'); });
