@@ -4,7 +4,7 @@
   настройках этого попапа и впишите ровно тот, что указан в кнопке на карточке отзыва
   на основной странице (href="#popup:...") — тогда клик по кнопке "Открыть полный отзыв"
   откроет именно этот попап.
-  Тип медиа: видеоотзыв + скриншоты переписки.
+  Тип медиа: видеоотзыв (YouTube Shorts, вертикальный) + скриншоты переписки.
 -->
 <style>
   .kr-review * { box-sizing: border-box; }
@@ -27,11 +27,9 @@
   .kr-review-text p + p { margin-top: 10px; }
   .kr-review-media { margin-top: 22px; }
   .kr-review-media-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--kr-muted2); margin-bottom: 10px; }
-  /* video */
-  .kr-review-video { position: relative; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; background: linear-gradient(135deg,var(--kr-navy) 0%,var(--kr-navy-deep) 100%); display: flex; align-items: center; justify-content: center; }
-  .kr-review-video-play { width: 64px; height: 64px; border-radius: 999px; background: rgba(255,255,255,.15); display: grid; place-items: center; }
-  .kr-review-video-play svg { width: 26px; height: 26px; color: #fff; margin-left: 3px; }
-  .kr-review-video-note { position: absolute; bottom: 12px; left: 12px; right: 12px; color: rgba(255,255,255,.7); font-size: 11.5px; text-align: center; }
+  /* video — вертикальный формат (YouTube Shorts) */
+  .kr-review-video { position: relative; width: 100%; max-width: 300px; aspect-ratio: 9/16; margin: 0 auto; border-radius: 16px; overflow: hidden; background: linear-gradient(135deg,var(--kr-navy) 0%,var(--kr-navy-deep) 100%); }
+  .kr-review-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   /* audio */
   .kr-review-audio { background: var(--kr-navy-soft); border-radius: 16px; padding: 18px; display: flex; align-items: center; gap: 14px; }
   .kr-review-audio-icon { flex: none; width: 44px; height: 44px; border-radius: 999px; background: var(--kr-navy); display: grid; place-items: center; }
@@ -68,20 +66,15 @@
 
   <div class="kr-review-media">
     <div class="kr-review-media-label">Видеоотзыв</div>
-    <!-- ЗАМЕНИТЕ: вставьте сюда реальный видеоплеер (iframe YouTube/VK или видео-блок Тильды) вместо этой заглушки -->
     <div class="kr-review-video">
-      <div class="kr-review-video-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-      <div class="kr-review-video-note">Видеоотзыв Миланы — вставьте реальное видео вместо заглушки</div>
+      <iframe src="https://www.youtube.com/embed/dmwVvWdIW6A" title="Видеоотзыв Миланы" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
 
   <div class="kr-review-media">
     <div class="kr-review-media-label">Скриншоты переписки</div>
-    <!-- ЗАМЕНИТЕ НА ФОТО: реальные скриншоты переписки/документов вместо placehold.co -->
     <div class="kr-review-shots">
-      <img src="https://placehold.co/480x860/E6EAF6/16295E?text=%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%201" alt="Скриншот переписки Миланы">
-      <img src="https://placehold.co/480x860/E6EAF6/16295E?text=%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%202" alt="Скриншот переписки Миланы">
-      <img src="https://placehold.co/480x860/E6EAF6/16295E?text=%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%203" alt="Скриншот переписки Миланы">
+      <img src="https://static.tildacdn.ink/tild3239-6638-4138-b765-616631376363/photo_61475654434686.jpg" alt="Скриншот переписки Миланы">
     </div>
   </div>
 
