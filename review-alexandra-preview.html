@@ -7,11 +7,13 @@
   Тип медиа: аудиоотзыв + скриншоты переписки.
 
   ПРО АУДИО: голосовое (.ogg) я раньше встраивал прямо в код как data-URI — получилось около
-  200 000 символов одной строкой, и это не давало вставить код в Тильду. Вернул обычную ссылку —
-  загрузите файл через блок "Аудио" в Тильде (или через любой блок с картинкой/файлом — работает
-  так же, как с фото), скопируйте прямую ссылку на файл и вставьте её вместо
-  "ЗАМЕНИТЕ_НА_ССЫЛКУ_АУДИО.mp3" ниже. Заодно, если голосовое изначально в OGG — стоит
-  сразу залить MP3-версию: OGG/Opus не везде стабильно играет в Safari на iPhone.
+  200 000 символов одной строкой, и это не давало вставить код в Тильду. Потом вы прислали ссылку
+  на трек на Whyp (whyp.it) — сейчас он встроен через iframe-плеер этого сервиса (ссылка ниже
+  в src, вместе с приватным token из вашей ссылки). Я не смог сам открыть whyp.it из песочницы
+  (заблокирован исходящий доступ), так что визуально проверить плеер в браузере не получилось —
+  но это штатный способ встраивания у Whyp, должен работать. Если плеер не покажется в Тильде —
+  на странице трека на whyp.it обычно есть отдельная кнопка "Embed"/"Share → Embed", которая даёт
+  готовый iframe-код: тогда просто замените iframe ниже на него.
 -->
 <style>
   .kr-review * { box-sizing: border-box; }
@@ -33,11 +35,9 @@
   .kr-review-text p + p { margin-top: 10px; }
   .kr-review-media { margin-top: 22px; }
   .kr-review-media-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--kr-muted2); margin-bottom: 10px; }
-  /* audio */
-  .kr-review-audio { background: var(--kr-navy-soft); border-radius: 16px; padding: 18px; display: flex; align-items: center; gap: 14px; }
-  .kr-review-audio-icon { flex: none; width: 44px; height: 44px; border-radius: 999px; background: var(--kr-navy); display: grid; place-items: center; }
-  .kr-review-audio-icon svg { width: 20px; height: 20px; color: #fff; }
-  .kr-review-audio audio { width: 100%; }
+  /* audio — плеер Whyp во фрейме */
+  .kr-review-audio { background: var(--kr-navy-soft); border-radius: 16px; padding: 10px; }
+  .kr-review-audio iframe { width: 100%; height: 180px; border: 0; border-radius: 10px; display: block; background: #fff; }
   /* screenshots */
   .kr-review-shots { margin-top: 18px; display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
   .kr-review-shots img { flex: none; width: 160px; aspect-ratio: 3/5.5; object-fit: cover; border-radius: 35px; background: var(--kr-bg); box-shadow: 0 10px 20px -10px rgba(22,41,94,.25); cursor: zoom-in; }
@@ -78,10 +78,10 @@
 
   <div class="kr-review-media">
     <div class="kr-review-media-label">Аудиоотзыв</div>
-    <!-- ЗАМЕНИТЕ: загрузите аудио через блок Тильды и вставьте прямую ссылку вместо src ниже -->
+    <!-- Плеер Whyp: если не отобразится в Тильде, возьмите готовый iframe-код через "Share → Embed"
+         на странице трека на whyp.it и замените этот iframe на него -->
     <div class="kr-review-audio">
-      <div class="kr-review-audio-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg></div>
-      <audio controls src="ЗАМЕНИТЕ_НА_ССЫЛКУ_АУДИО.mp3"></audio>
+      <iframe src="https://whyp.it/tracks/otzyv-OLz5TKQRdTl8?token=fRgeDE5tolNa" title="Аудиоотзыв Александры" allow="autoplay" loading="lazy"></iframe>
     </div>
   </div>
 
