@@ -182,7 +182,13 @@
   .kr-step:last-child .kr-step-arrow { display: none; }
 
   /* universities — auto-scrolling marquee of the original big city-style cards */
-  .kr-uni-marquee { margin-top: 20px; overflow: hidden; position: relative; }
+  /* full-bleed: строка выходит за пределы .kr-container на всю ширину окна, а не зажата в те же поля, что текст */
+  .kr-uni-marquee {
+    margin-top: 20px; overflow: hidden; position: relative;
+    width: 100vw; margin-left: calc(50% - 50vw);
+    padding-left: 20px; padding-right: 20px;
+  }
+  @media (min-width: 768px) { .kr-uni-marquee { padding-left: 32px; padding-right: 32px; } }
   /* затухание по краям только на широких экранах — на мобильном съедало слишком много места */
   @media (min-width: 640px) {
     .kr-uni-marquee {
@@ -192,6 +198,13 @@
   }
   .kr-uni-track { display: flex; gap: 16px; width: max-content; animation: kr-marquee 60s linear infinite; }
   .kr-uni-marquee:hover .kr-uni-track { animation-play-state: paused; }
+  /* мобильный: CSS-анимация выключена, скорость и пауза по тапу управляются через JS (script ниже),
+     а сам контейнер становится нативно скроллящимся, чтобы можно было пролистать пальцем */
+  @media (max-width: 639px) {
+    .kr-uni-marquee { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .kr-uni-marquee::-webkit-scrollbar { display: none; }
+    .kr-uni-track { animation: none; }
+  }
   @keyframes kr-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   .kr-uni-card {
@@ -813,6 +826,53 @@
   } else {
     els.forEach(function(el){ el.classList.add('kr-in'); });
   }
+
+  // uni marquee on mobile — faster JS auto-scroll, tap to pause/resume, free finger swipe
+  (function(){
+    var marquee = document.querySelector('.kr-uni-marquee');
+    var track = document.querySelector('.kr-uni-track');
+    if (!marquee || !track) return;
+    if (!window.matchMedia('(max-width: 639px)').matches) return;
+
+    var half = track.scrollWidth / 2;
+    var speed = 1.6; // px per frame ~= 96px/s at 60fps — faster than the old 60s CSS loop
+    var paused = false;
+    var touching = false;
+    var startX = 0;
+    var moved = 0;
+
+    function wrap(){
+      if (marquee.scrollLeft >= half) marquee.scrollLeft -= half;
+      else if (marquee.scrollLeft <= 0) marquee.scrollLeft += half;
+    }
+
+    function tick(){
+      if (!paused && !touching) {
+        marquee.scrollLeft += speed;
+        wrap();
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    marquee.addEventListener('touchstart', function(e){
+      touching = true;
+      startX = e.touches[0].clientX;
+      moved = 0;
+    }, { passive: true });
+
+    marquee.addEventListener('touchmove', function(e){
+      moved = Math.abs(e.touches[0].clientX - startX);
+    }, { passive: true });
+
+    marquee.addEventListener('touchend', function(){
+      touching = false;
+      if (moved < 8) paused = !paused; // a tap (not a drag) toggles pause/resume
+      wrap();
+    });
+
+    marquee.addEventListener('scroll', wrap); // keep it seamless even mid-swipe
+  })();
 
   // why-section tabs — auto-plays like a slideshow until the visitor clicks a tab themselves
   (function(){
