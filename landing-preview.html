@@ -117,12 +117,8 @@
   .kr-visual-inner {
     border-radius: 18px; overflow: hidden; aspect-ratio: 4/3.1; position: relative;
     background: linear-gradient(135deg,var(--kr-navy-soft) 0%,#d3d9ee 100%);
-    display: flex; align-items: center; justify-content: center;
   }
-  /* ЗАМЕНИТЕ НА ФОТО: удалите .kr-visual-placeholder и поставьте <img src="ваше фото ученика/города"> */
-  .kr-visual-placeholder { text-align: center; padding: 24px; }
-  .kr-visual-placeholder svg { width: 96px; height: 96px; opacity: .55; }
-  .kr-visual-placeholder p { margin-top: 10px; font-size: 12px; color: #5b6b8c; font-weight: 700; }
+  .kr-visual-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .kr-visual-badge {
     position: absolute; bottom: 14px; left: 14px; right: 14px; background: rgba(255,255,255,.92);
     backdrop-filter: blur(6px); border-radius: 14px; padding: 12px 14px;
@@ -355,11 +351,7 @@
         <div class="kr-visual kr-fade">
           <div class="kr-visual-card kr-shadow">
             <div class="kr-visual-inner">
-              <!-- ЗАМЕНИТЕ НА ФОТО: реальное фото ваших учеников/студгородка сильно поднимет конверсию -->
-              <div class="kr-visual-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#16295E" stroke-width="1.4"><path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/><path d="M6 10v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/><path d="M21 7.5v6"/></svg>
-                <p>Фото ваших студентов<br>из Казахстана — сюда</p>
-              </div>
+              <img src="https://optim.tildacdn.ink/tild3136-3332-4265-a264-343034346330/-/format/webp/pexels-nuhyil-294462.jpg.webp" alt="Студенты из Казахстана в Корее">
               <div class="kr-visual-badge">
                 <div class="kr-avatars">
                   <div class="kr-avatar" style="background:#E6EAF6">A</div>
@@ -471,8 +463,7 @@
       <div class="kr-uni-marquee kr-fade">
         <div class="kr-uni-track">
         <div class="kr-uni-card">
-          <!-- ЗАМЕНИТЕ НА ФОТО кампуса PNU -->
-          <div class="kr-uni-photo" style="background-image:url('https://placehold.co/700x900/1e293b/475569?text=PNU%0A%28%D1%84%D0%BE%D1%82%D0%BE%20%D0%BA%D0%B0%D0%BC%D0%BF%D1%83%D1%81%D0%B0%29')"></div>
+          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild3832-3664-4033-b034-633065633635/pusan_2.jpg')"></div>
           <div class="kr-uni-overlay kr-uni-overlay-1"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -489,8 +480,7 @@
           </div>
         </div>
         <div class="kr-uni-card">
-          <!-- ЗАМЕНИТЕ НА ФОТО кампуса PKNU -->
-          <div class="kr-uni-photo" style="background-image:url('https://placehold.co/700x900/1e3a8a/93c5fd?text=PKNU%0A%28%D1%84%D0%BE%D1%82%D0%BE%20%D0%BA%D0%B0%D0%BC%D0%BF%D1%83%D1%81%D0%B0%29')"></div>
+          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild6334-3934-4237-b138-666533393737/Pukyong_j.jpg')"></div>
           <div class="kr-uni-overlay kr-uni-overlay-2"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -507,8 +497,7 @@
           </div>
         </div>
         <div class="kr-uni-card">
-          <!-- ЗАМЕНИТЕ НА ФОТО кампуса SKKU -->
-          <div class="kr-uni-photo" style="background-image:url('https://placehold.co/700x900/1e1b4b/c4b5fd?text=SKKU%0A%28%D1%84%D0%BE%D1%82%D0%BE%20%D0%BA%D0%B0%D0%BC%D0%BF%D1%83%D1%81%D0%B0%29')"></div>
+          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild3861-3236-4730-b935-333733613466/sungkyunkwan-univers.jpg')"></div>
           <div class="kr-uni-overlay kr-uni-overlay-3"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -525,8 +514,7 @@
           </div>
         </div>
         <div class="kr-uni-card">
-          <!-- ЗАМЕНИТЕ НА ФОТО кампуса KWU -->
-          <div class="kr-uni-photo" style="background-image:url('https://placehold.co/700x900/1e293b/475569?text=KWU%0A%28%D1%84%D0%BE%D1%82%D0%BE%20%D0%BA%D0%B0%D0%BC%D0%BF%D1%83%D1%81%D0%B0%29')"></div>
+          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild3234-3463-4336-b339-303237383533/kwangwoon-university.jpg')"></div>
           <div class="kr-uni-overlay kr-uni-overlay-1"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -543,8 +531,7 @@
           </div>
         </div>
         <div class="kr-uni-card">
-          <!-- ЗАМЕНИТЕ НА ФОТО кампуса HYU -->
-          <div class="kr-uni-photo" style="background-image:url('https://placehold.co/700x900/1e3a8a/93c5fd?text=HYU%0A%28%D1%84%D0%BE%D1%82%D0%BE%20%D0%BA%D0%B0%D0%BC%D0%BF%D1%83%D1%81%D0%B0%29')"></div>
+          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild6661-3939-4063-b062-333730643337/Hanyang-University.jpg')"></div>
           <div class="kr-uni-overlay kr-uni-overlay-2"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -561,8 +548,7 @@
           </div>
         </div>
         <div class="kr-uni-card">
-          <!-- ЗАМЕНИТЕ НА ФОТО кампуса INHA -->
-          <div class="kr-uni-photo" style="background-image:url('https://placehold.co/700x900/1e1b4b/c4b5fd?text=INHA%0A%28%D1%84%D0%BE%D1%82%D0%BE%20%D0%BA%D0%B0%D0%BC%D0%BF%D1%83%D1%81%D0%B0%29')"></div>
+          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild6665-3630-4730-b933-353834656138/universitetskaya-kli.jpg')"></div>
           <div class="kr-uni-overlay kr-uni-overlay-3"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -579,8 +565,7 @@
           </div>
         </div>
         <div class="kr-uni-card" aria-hidden="true">
-          <!-- ЗАМЕНИТЕ НА ФОТО кампуса PNU -->
-          <div class="kr-uni-photo" style="background-image:url('https://placehold.co/700x900/1e293b/475569?text=PNU%0A%28%D1%84%D0%BE%D1%82%D0%BE%20%D0%BA%D0%B0%D0%BC%D0%BF%D1%83%D1%81%D0%B0%29')"></div>
+          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild3832-3664-4033-b034-633065633635/pusan_2.jpg')"></div>
           <div class="kr-uni-overlay kr-uni-overlay-1"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -597,8 +582,7 @@
           </div>
         </div>
         <div class="kr-uni-card" aria-hidden="true">
-          <!-- ЗАМЕНИТЕ НА ФОТО кампуса PKNU -->
-          <div class="kr-uni-photo" style="background-image:url('https://placehold.co/700x900/1e3a8a/93c5fd?text=PKNU%0A%28%D1%84%D0%BE%D1%82%D0%BE%20%D0%BA%D0%B0%D0%BC%D0%BF%D1%83%D1%81%D0%B0%29')"></div>
+          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild6334-3934-4237-b138-666533393737/Pukyong_j.jpg')"></div>
           <div class="kr-uni-overlay kr-uni-overlay-2"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -615,8 +599,7 @@
           </div>
         </div>
         <div class="kr-uni-card" aria-hidden="true">
-          <!-- ЗАМЕНИТЕ НА ФОТО кампуса SKKU -->
-          <div class="kr-uni-photo" style="background-image:url('https://placehold.co/700x900/1e1b4b/c4b5fd?text=SKKU%0A%28%D1%84%D0%BE%D1%82%D0%BE%20%D0%BA%D0%B0%D0%BC%D0%BF%D1%83%D1%81%D0%B0%29')"></div>
+          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild3861-3236-4730-b935-333733613466/sungkyunkwan-univers.jpg')"></div>
           <div class="kr-uni-overlay kr-uni-overlay-3"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -633,8 +616,7 @@
           </div>
         </div>
         <div class="kr-uni-card" aria-hidden="true">
-          <!-- ЗАМЕНИТЕ НА ФОТО кампуса KWU -->
-          <div class="kr-uni-photo" style="background-image:url('https://placehold.co/700x900/1e293b/475569?text=KWU%0A%28%D1%84%D0%BE%D1%82%D0%BE%20%D0%BA%D0%B0%D0%BC%D0%BF%D1%83%D1%81%D0%B0%29')"></div>
+          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild3234-3463-4336-b339-303237383533/kwangwoon-university.jpg')"></div>
           <div class="kr-uni-overlay kr-uni-overlay-1"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -651,8 +633,7 @@
           </div>
         </div>
         <div class="kr-uni-card" aria-hidden="true">
-          <!-- ЗАМЕНИТЕ НА ФОТО кампуса HYU -->
-          <div class="kr-uni-photo" style="background-image:url('https://placehold.co/700x900/1e3a8a/93c5fd?text=HYU%0A%28%D1%84%D0%BE%D1%82%D0%BE%20%D0%BA%D0%B0%D0%BC%D0%BF%D1%83%D1%81%D0%B0%29')"></div>
+          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild6661-3939-4063-b062-333730643337/Hanyang-University.jpg')"></div>
           <div class="kr-uni-overlay kr-uni-overlay-2"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -669,8 +650,7 @@
           </div>
         </div>
         <div class="kr-uni-card" aria-hidden="true">
-          <!-- ЗАМЕНИТЕ НА ФОТО кампуса INHA -->
-          <div class="kr-uni-photo" style="background-image:url('https://placehold.co/700x900/1e1b4b/c4b5fd?text=INHA%0A%28%D1%84%D0%BE%D1%82%D0%BE%20%D0%BA%D0%B0%D0%BC%D0%BF%D1%83%D1%81%D0%B0%29')"></div>
+          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild6665-3630-4730-b933-353834656138/universitetskaya-kli.jpg')"></div>
           <div class="kr-uni-overlay kr-uni-overlay-3"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
