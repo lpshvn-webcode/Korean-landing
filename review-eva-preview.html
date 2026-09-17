@@ -4,7 +4,7 @@
   настройках этого попапа и впишите ровно тот, что указан в кнопке на карточке отзыва
   на основной странице (href="#popup:eva") — тогда клик по кнопке "Открыть полный отзыв"
   откроет именно этот попап.
-  Тип медиа: аудиоотзыв + скриншоты переписки.
+  Тип медиа: только текстовый отзыв + фото Евы (без аудио и скриншотов).
 -->
 <style>
   .kr-review * { box-sizing: border-box; }
@@ -17,29 +17,14 @@
     max-width: 640px; margin: 0 auto; padding: 28px 20px 36px;
   }
   @import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap');
-  .kr-review-tag { display: inline-flex; background: var(--kr-navy-soft); color: var(--kr-navy); border-radius: 999px; padding: 5px 13px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-  .kr-review-name { margin-top: 14px; font-size: 24px; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
+  .kr-review-photo { width: 84px; height: 84px; border-radius: 999px; object-fit: cover; box-shadow: 0 10px 20px -8px rgba(22,41,94,.35); }
+  .kr-review-name { margin-top: 16px; font-size: 24px; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
   @media (min-width: 640px) { .kr-review-name { font-size: 28px; } }
   .kr-review-badges { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
   .kr-review-badge { background: var(--kr-red); color: #fff; border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 700; }
   .kr-review-badge.kr-navy { background: var(--kr-navy); }
   .kr-review-text { margin-top: 18px; font-size: 15px; line-height: 1.6; color: #1e293b; }
   .kr-review-text p + p { margin-top: 10px; }
-  .kr-review-media { margin-top: 22px; }
-  .kr-review-media-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--kr-muted2); margin-bottom: 10px; }
-  /* video */
-  .kr-review-video { position: relative; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; background: linear-gradient(135deg,var(--kr-navy) 0%,var(--kr-navy-deep) 100%); display: flex; align-items: center; justify-content: center; }
-  .kr-review-video-play { width: 64px; height: 64px; border-radius: 999px; background: rgba(255,255,255,.15); display: grid; place-items: center; }
-  .kr-review-video-play svg { width: 26px; height: 26px; color: #fff; margin-left: 3px; }
-  .kr-review-video-note { position: absolute; bottom: 12px; left: 12px; right: 12px; color: rgba(255,255,255,.7); font-size: 11.5px; text-align: center; }
-  /* audio */
-  .kr-review-audio { background: var(--kr-navy-soft); border-radius: 16px; padding: 18px; display: flex; align-items: center; gap: 14px; }
-  .kr-review-audio-icon { flex: none; width: 44px; height: 44px; border-radius: 999px; background: var(--kr-navy); display: grid; place-items: center; }
-  .kr-review-audio-icon svg { width: 20px; height: 20px; color: #fff; }
-  .kr-review-audio audio { width: 100%; }
-  /* screenshots */
-  .kr-review-shots { margin-top: 18px; display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
-  .kr-review-shots img { flex: none; width: 160px; aspect-ratio: 3/5.5; object-fit: cover; border-radius: 14px; background: var(--kr-bg); box-shadow: 0 10px 20px -10px rgba(22,41,94,.25); }
   .kr-review-cta { margin-top: 28px; text-align: center; }
   .kr-review-cta-text { font-size: 13px; color: var(--kr-muted); margin-bottom: 12px; }
   .kr-review-btn {
@@ -52,35 +37,17 @@
 </style>
 
 <div class="kr-review">
-  <span class="kr-review-tag">Соцдоки 2025</span>
+  <img class="kr-review-photo" src="https://static.tildacdn.ink/tild3434-6530-4832-b938-373265306132/PHOTO-2026-09-16-20-.jpg" alt="Ева">
   <div class="kr-review-name">Ева → 2 государственных вуза Кореи</div>
   <div class="kr-review-badges">
-            <span class="kr-review-badge">−80% с каждого вуза</span>
-            <span class="kr-review-badge kr-navy">госвузы</span>
-            <span class="kr-review-badge kr-navy">$400 за семестр</span>
+    <span class="kr-review-badge">−80% с каждого вуза</span>
+    <span class="kr-review-badge kr-navy">госвузы</span>
+    <span class="kr-review-badge kr-navy">$400 за семестр</span>
   </div>
 
   <div class="kr-review-text">
-          <p>Ева поступила в 2 государственных вуза Кореи — они в 2–3 раза дешевле частных — с скидкой 80% от каждого университета.</p>
-          <p>За первый семестр она заплатила всего $400.</p>
-  </div>
-
-  <div class="kr-review-media">
-    <div class="kr-review-media-label">Аудиоотзыв</div>
-    <!-- ЗАМЕНИТЕ: замените src в audio на реальный файл, загруженный в медиа-менеджер Тильды -->
-    <div class="kr-review-audio">
-      <div class="kr-review-audio-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg></div>
-      <audio controls src="ЗАМЕНИТЕ_НА_ССЫЛКУ_АУДИО.mp3"></audio>
-    </div>
-  </div>
-
-  <div class="kr-review-media">
-    <div class="kr-review-media-label">Скриншоты переписки</div>
-    <!-- ЗАМЕНИТЕ НА ФОТО: реальные скриншоты переписки/документов вместо placehold.co -->
-    <div class="kr-review-shots">
-      <img src="https://placehold.co/480x860/E6EAF6/16295E?text=%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%201" alt="Скриншот переписки Евы">
-      <img src="https://placehold.co/480x860/E6EAF6/16295E?text=%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%202" alt="Скриншот переписки Евы">
-    </div>
+    <p>Ева поступила в 2 государственных вуза Кореи — они в 2–3 раза дешевле частных — с скидкой 80% от каждого университета.</p>
+    <p>За первый семестр она заплатила всего $400.</p>
   </div>
 
   <div class="kr-review-cta">

@@ -256,18 +256,14 @@
     font-size: 12.5px; font-weight: 700; text-decoration: none; font-family: inherit; transition: background .2s ease;
   }
   .kr-testimonial-open:hover { background: var(--kr-red-deep); }
-  /* individual approach block (replaces the generic "what's inside the plan" checklist) */
-  .kr-approach { margin-top: 16px; background: var(--kr-navy-soft); border-radius: 20px; padding: 24px; display: flex; gap: 18px; align-items: flex-start; }
-  @media (max-width: 640px) { .kr-approach { flex-direction: column; } }
-  .kr-approach-icon { flex: none; width: 56px; height: 56px; border-radius: 14px; background: #fff; display: grid; place-items: center; }
-  .kr-approach-icon svg { width: 28px; height: 28px; color: var(--kr-navy); }
-  .kr-approach-tag { display: inline-block; background: #fff; border-radius: 999px; padding: 4px 12px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--kr-navy); }
-  .kr-approach-title { margin-top: 10px; font-size: 18px; font-weight: 700; line-height: 1.2; }
-  .kr-approach-desc { margin-top: 6px; font-size: 13.5px; line-height: 1.45; color: #1e293b; max-width: 560px; }
-  .kr-approach-points { margin-top: 14px; display: grid; gap: 7px; }
-  .kr-approach-point { display: flex; gap: 8px; font-size: 12.5px; line-height: 1.35; }
-  .kr-approach-point span { color: var(--kr-navy); font-weight: 700; flex: none; }
-  .kr-approach-foot { margin-top: 14px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--kr-muted2); }
+  /* company-in-numbers block (replaces the "individual approach" checklist) */
+  .kr-numbers { margin-top: 16px; background: var(--kr-navy); border-radius: 20px; padding: 30px 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 640px) { .kr-numbers { grid-template-columns: 1fr; gap: 22px; padding: 26px 22px; } }
+  .kr-numbers-item { text-align: center; }
+  @media (min-width: 641px) { .kr-numbers-item { border-left: 1px solid rgba(255,255,255,.14); } .kr-numbers-item:first-child { border-left: none; } }
+  .kr-numbers-num { font-size: 34px; font-weight: 800; line-height: 1; color: #fff; letter-spacing: -0.01em; }
+  @media (min-width: 640px) { .kr-numbers-num { font-size: 38px; } }
+  .kr-numbers-label { margin-top: 8px; font-size: 13px; line-height: 1.35; color: rgba(255,255,255,.7); }
 
   /* faq */
   .kr-faq { margin-top: 24px; display: grid; gap: 10px; max-width: 780px; }
@@ -747,19 +743,18 @@
         </div>
       </div>
 
-      <div class="kr-approach kr-fade">
-        <div class="kr-approach-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-3.6 3-6 7-6s7 2.4 7 6"/></svg></div>
-        <div>
-          <span class="kr-approach-tag">Как мы решаем, куда подавать</span>
-          <div class="kr-approach-title">У каждого свой список вузов</div>
-          <div class="kr-approach-desc">Прежде чем называть вуз, смотрим на аттестат, специальность и то, куда вы хотите после учёбы. Кириллу это дало Korea University с полным покрытием, Еве — два госвуза почти бесплатно. Вам предложим свой вариант.</div>
-          <div class="kr-approach-points">
-            <div class="kr-approach-point"><span>—</span> Разбираем аттестат и цели на созвоне, а не по анкете</div>
-            <div class="kr-approach-point"><span>—</span> Бюджет обсуждаем сразу и честно — платное, скидка или грант</div>
-            <div class="kr-approach-point"><span>—</span> На связи от подачи документов до визы</div>
-          </div>
-          <!-- УКАЖИТЕ ДАТУ: реальный дедлайн подачи документов на платное поступление 2026 -->
-          <div class="kr-approach-foot"><span class="kr-dot" style="animation:none"></span> Разбор бесплатный — мест в потоке немного</div>
+      <div class="kr-numbers kr-fade">
+        <div class="kr-numbers-item">
+          <div class="kr-numbers-num">2022</div>
+          <div class="kr-numbers-label">работаем с этого года</div>
+        </div>
+        <div class="kr-numbers-item">
+          <div class="kr-numbers-num">700+</div>
+          <div class="kr-numbers-label">студентов поступили с нашей помощью</div>
+        </div>
+        <div class="kr-numbers-item">
+          <div class="kr-numbers-num">100%</div>
+          <div class="kr-numbers-label">одобрение скидок на обучение всем</div>
         </div>
       </div>
     </section>
