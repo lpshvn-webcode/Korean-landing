@@ -164,11 +164,11 @@
   .kr-why-panels { margin-top: 16px; }
   .kr-why-panel {
     display: none; background: var(--kr-navy-soft); border-radius: 24px; padding: 28px;
-    gap: 22px; align-items: center; animation: kr-why-fade .35s ease;
+    gap: 22px; align-items: center; animation: kr-why-slide .2s ease-out;
   }
   .kr-why-panel.kr-active { display: flex; }
   @media (max-width: 640px) { .kr-why-panel { flex-direction: column; align-items: flex-start; text-align: left; padding: 22px; } }
-  @keyframes kr-why-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes kr-why-slide { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: translateX(0); } }
   .kr-why-panel-icon { flex: none; width: 84px; height: 84px; border-radius: 20px; background: #fff; display: grid; place-items: center; }
   .kr-why-panel-icon svg { width: 42px; height: 42px; color: var(--kr-navy); }
   .kr-why-panel-tag {
