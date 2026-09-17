@@ -19,6 +19,9 @@
      насколько уместно её показывать первой, если сейчас GKS почти закрыт — возможно,
      стоит заменить местами со вторым/третьим слотом, когда добавите кейсы с платным+скидкой.
 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap">
 <style>
   .kr-wrap * { box-sizing: border-box; }
   .kr-wrap {
@@ -40,7 +43,6 @@
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-  @import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap');
 
   .kr-container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
   @media (min-width: 768px) { .kr-container { padding: 0 32px; } }
@@ -214,8 +216,8 @@
     position: relative; flex: none; width: 300px; height: 460px; border-radius: 24px; overflow: hidden;
     display: flex; flex-direction: column; padding: 20px; color: #fff; background: #0F172A;
   }
-  /* ЗАМЕНИТЕ НА ФОТО: подставьте реальное фото кампуса вместо URL с placehold.co через background-image */
-  .kr-uni-photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+  /* ЗАМЕНИТЕ НА ФОТО: подставьте реальное фото кампуса вместо текущего URL */
+  .kr-uni-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #0F172A; }
   /* цветная плашка поверх фото, ~38% непрозрачности — держит бренд-цвет и читаемость текста */
   .kr-uni-overlay { position: absolute; inset: 0; opacity: .38; }
   .kr-uni-overlay-1 { background: linear-gradient(160deg,#334155 0%,#0F172A 60%,#000 100%); }
@@ -241,8 +243,9 @@
   @media (min-width: 1024px) { .kr-testimonials-grid { grid-template-columns: repeat(4,1fr); } }
   .kr-testimonial-card { background: #fff; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; }
   .kr-testimonial-shot {
-    position: relative; aspect-ratio: 3/4; background-size: cover; background-position: center; background-color: var(--kr-bg);
+    position: relative; aspect-ratio: 3/4; background-color: var(--kr-bg); overflow: hidden;
   }
+  .kr-testimonial-shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .kr-testimonial-badges { position: absolute; top: 16px; right: 16px; display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
   .kr-testimonial-badge {
     background: var(--kr-red); color: #fff; border-radius: 999px; padding: 4px 11px; font-size: 10.5px; font-weight: 700;
@@ -359,7 +362,7 @@
         <div class="kr-visual kr-fade">
           <div class="kr-visual-card kr-shadow">
             <div class="kr-visual-inner">
-              <img src="https://optim.tildacdn.ink/tild3136-3332-4265-a264-343034346330/-/format/webp/pexels-nuhyil-294462.jpg.webp" alt="Студенты из Казахстана в Корее">
+              <img src="https://optim.tildacdn.ink/tild3136-3332-4265-a264-343034346330/-/format/webp/pexels-nuhyil-294462.jpg.webp" alt="Студенты из Казахстана в Корее" fetchpriority="high" decoding="async">
               <div class="kr-visual-badge">
                 <div class="kr-avatars">
                   <div class="kr-avatar" style="background:#E6EAF6">A</div>
@@ -471,7 +474,7 @@
       <div class="kr-uni-marquee kr-fade">
         <div class="kr-uni-track">
         <div class="kr-uni-card">
-          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild3832-3664-4033-b034-633065633635/pusan_2.jpg')"></div>
+          <img class="kr-uni-photo" src="https://static.tildacdn.ink/tild3832-3664-4033-b034-633065633635/pusan_2.jpg" alt="Кампус PNU" loading="lazy" decoding="async">
           <div class="kr-uni-overlay kr-uni-overlay-1"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -488,7 +491,7 @@
           </div>
         </div>
         <div class="kr-uni-card">
-          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild6334-3934-4237-b138-666533393737/Pukyong_j.jpg')"></div>
+          <img class="kr-uni-photo" src="https://static.tildacdn.ink/tild6334-3934-4237-b138-666533393737/Pukyong_j.jpg" alt="Кампус PKNU" loading="lazy" decoding="async">
           <div class="kr-uni-overlay kr-uni-overlay-2"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -505,7 +508,7 @@
           </div>
         </div>
         <div class="kr-uni-card">
-          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild3861-3236-4730-b935-333733613466/sungkyunkwan-univers.jpg')"></div>
+          <img class="kr-uni-photo" src="https://static.tildacdn.ink/tild3861-3236-4730-b935-333733613466/sungkyunkwan-univers.jpg" alt="Кампус SKKU" loading="lazy" decoding="async">
           <div class="kr-uni-overlay kr-uni-overlay-3"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -522,7 +525,7 @@
           </div>
         </div>
         <div class="kr-uni-card">
-          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild3234-3463-4336-b339-303237383533/kwangwoon-university.jpg')"></div>
+          <img class="kr-uni-photo" src="https://static.tildacdn.ink/tild3234-3463-4336-b339-303237383533/kwangwoon-university.jpg" alt="Кампус KWU" loading="lazy" decoding="async">
           <div class="kr-uni-overlay kr-uni-overlay-1"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -539,7 +542,7 @@
           </div>
         </div>
         <div class="kr-uni-card">
-          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild6661-3939-4063-b062-333730643337/Hanyang-University.jpg')"></div>
+          <img class="kr-uni-photo" src="https://static.tildacdn.ink/tild6661-3939-4063-b062-333730643337/Hanyang-University.jpg" alt="Кампус HYU" loading="lazy" decoding="async">
           <div class="kr-uni-overlay kr-uni-overlay-2"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -556,7 +559,7 @@
           </div>
         </div>
         <div class="kr-uni-card">
-          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild6665-3630-4730-b933-353834656138/universitetskaya-kli.jpg')"></div>
+          <img class="kr-uni-photo" src="https://static.tildacdn.ink/tild6665-3630-4730-b933-353834656138/universitetskaya-kli.jpg" alt="Кампус INHA" loading="lazy" decoding="async">
           <div class="kr-uni-overlay kr-uni-overlay-3"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -573,7 +576,7 @@
           </div>
         </div>
         <div class="kr-uni-card" aria-hidden="true">
-          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild3832-3664-4033-b034-633065633635/pusan_2.jpg')"></div>
+          <img class="kr-uni-photo" src="https://static.tildacdn.ink/tild3832-3664-4033-b034-633065633635/pusan_2.jpg" alt="Кампус PNU" loading="lazy" decoding="async">
           <div class="kr-uni-overlay kr-uni-overlay-1"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -590,7 +593,7 @@
           </div>
         </div>
         <div class="kr-uni-card" aria-hidden="true">
-          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild6334-3934-4237-b138-666533393737/Pukyong_j.jpg')"></div>
+          <img class="kr-uni-photo" src="https://static.tildacdn.ink/tild6334-3934-4237-b138-666533393737/Pukyong_j.jpg" alt="Кампус PKNU" loading="lazy" decoding="async">
           <div class="kr-uni-overlay kr-uni-overlay-2"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -607,7 +610,7 @@
           </div>
         </div>
         <div class="kr-uni-card" aria-hidden="true">
-          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild3861-3236-4730-b935-333733613466/sungkyunkwan-univers.jpg')"></div>
+          <img class="kr-uni-photo" src="https://static.tildacdn.ink/tild3861-3236-4730-b935-333733613466/sungkyunkwan-univers.jpg" alt="Кампус SKKU" loading="lazy" decoding="async">
           <div class="kr-uni-overlay kr-uni-overlay-3"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -624,7 +627,7 @@
           </div>
         </div>
         <div class="kr-uni-card" aria-hidden="true">
-          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild3234-3463-4336-b339-303237383533/kwangwoon-university.jpg')"></div>
+          <img class="kr-uni-photo" src="https://static.tildacdn.ink/tild3234-3463-4336-b339-303237383533/kwangwoon-university.jpg" alt="Кампус KWU" loading="lazy" decoding="async">
           <div class="kr-uni-overlay kr-uni-overlay-1"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -641,7 +644,7 @@
           </div>
         </div>
         <div class="kr-uni-card" aria-hidden="true">
-          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild6661-3939-4063-b062-333730643337/Hanyang-University.jpg')"></div>
+          <img class="kr-uni-photo" src="https://static.tildacdn.ink/tild6661-3939-4063-b062-333730643337/Hanyang-University.jpg" alt="Кампус HYU" loading="lazy" decoding="async">
           <div class="kr-uni-overlay kr-uni-overlay-2"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -658,7 +661,7 @@
           </div>
         </div>
         <div class="kr-uni-card" aria-hidden="true">
-          <div class="kr-uni-photo" style="background-image:url('https://static.tildacdn.ink/tild6665-3630-4730-b933-353834656138/universitetskaya-kli.jpg')"></div>
+          <img class="kr-uni-photo" src="https://static.tildacdn.ink/tild6665-3630-4730-b933-353834656138/universitetskaya-kli.jpg" alt="Кампус INHA" loading="lazy" decoding="async">
           <div class="kr-uni-overlay kr-uni-overlay-3"></div>
           <div class="kr-uni-scrim"></div>
           <div class="kr-uni-content">
@@ -689,7 +692,9 @@
 
       <div class="kr-testimonials-grid" style="margin-top:20px">
         <div class="kr-testimonial-card kr-fade kr-shadow-sm">
-          <div class="kr-testimonial-shot" style="background-image:url('https://static.tildacdn.ink/tild6265-3063-4536-b466-343661383632/IMG_7548.JPG')">
+          <div class="kr-testimonial-shot">
+
+            <img src="https://static.tildacdn.ink/tild6265-3063-4536-b466-343661383632/IMG_7548.JPG" alt="Милана" loading="lazy" decoding="async">
             <div class="kr-testimonial-badges">
               <span class="kr-testimonial-badge">−50% с каждого вуза</span>
               <span class="kr-testimonial-badge kr-navy">3 вуза</span>
@@ -702,7 +707,9 @@
         </div>
 
         <div class="kr-testimonial-card kr-fade kr-shadow-sm">
-          <div class="kr-testimonial-shot" style="background-image:url('https://static.tildacdn.ink/tild3631-3730-4239-b465-653433346366/pIMG_4703_el_35x45jp.jpg')">
+          <div class="kr-testimonial-shot">
+
+            <img src="https://static.tildacdn.ink/tild3631-3730-4239-b465-653433346366/pIMG_4703_el_35x45jp.jpg" alt="Кирилл" loading="lazy" decoding="async">
             <div class="kr-testimonial-badges">
               <span class="kr-testimonial-badge">100% + стипендия</span>
               <span class="kr-testimonial-badge kr-navy">SKY • SKKU</span>
@@ -715,7 +722,9 @@
         </div>
 
         <div class="kr-testimonial-card kr-fade kr-shadow-sm">
-          <div class="kr-testimonial-shot" style="background-image:url('https://static.tildacdn.ink/tild3434-6530-4832-b938-373265306132/PHOTO-2026-09-16-20-.jpg')">
+          <div class="kr-testimonial-shot">
+
+            <img src="https://static.tildacdn.ink/tild3434-6530-4832-b938-373265306132/PHOTO-2026-09-16-20-.jpg" alt="Ева" loading="lazy" decoding="async">
             <div class="kr-testimonial-badges">
               <span class="kr-testimonial-badge">−80% с каждого вуза</span>
               <span class="kr-testimonial-badge kr-navy">госвузы</span>
@@ -728,7 +737,9 @@
         </div>
 
         <div class="kr-testimonial-card kr-fade kr-shadow-sm">
-          <div class="kr-testimonial-shot" style="background-image:url('https://static.tildacdn.ink/tild3837-3530-4637-b166-333735666332/PHOTO-2026-09-16-21-.jpg')">
+          <div class="kr-testimonial-shot">
+
+            <img src="https://static.tildacdn.ink/tild3837-3530-4637-b166-333735666332/PHOTO-2026-09-16-21-.jpg" alt="Александра" loading="lazy" decoding="async">
             <div class="kr-testimonial-badges">
               <span class="kr-testimonial-badge">4 из 4 вузов</span>
               <span class="kr-testimonial-badge kr-navy">престижные вузы</span>
