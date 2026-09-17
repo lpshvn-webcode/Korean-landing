@@ -4,7 +4,7 @@
   настройках этого попапа и впишите ровно тот, что указан в кнопке на карточке отзыва
   на основной странице (href="#popup:eva") — тогда клик по кнопке "Открыть полный отзыв"
   откроет именно этот попап.
-  Тип медиа: только текстовый отзыв + фото Евы (без аудио и скриншотов).
+  Тип медиа: текстовый отзыв + фото Евы + скриншоты переписки (без аудио).
 -->
 <style>
   .kr-review * { box-sizing: border-box; }
@@ -25,6 +25,11 @@
   .kr-review-badge.kr-navy { background: var(--kr-navy); }
   .kr-review-text { margin-top: 18px; font-size: 15px; line-height: 1.6; color: #1e293b; }
   .kr-review-text p + p { margin-top: 10px; }
+  .kr-review-media { margin-top: 22px; }
+  .kr-review-media-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--kr-muted2); margin-bottom: 10px; }
+  /* screenshots */
+  .kr-review-shots { margin-top: 18px; display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
+  .kr-review-shots img { flex: none; width: 160px; aspect-ratio: 3/5.5; object-fit: cover; border-radius: 35px; background: var(--kr-bg); box-shadow: 0 10px 20px -10px rgba(22,41,94,.25); cursor: zoom-in; }
   .kr-review-cta { margin-top: 28px; text-align: center; }
   .kr-review-cta-text { font-size: 13px; color: var(--kr-muted); margin-bottom: 12px; }
   .kr-review-btn {
@@ -34,6 +39,18 @@
     transition: background .15s ease;
   }
   .kr-review-btn:hover { background: var(--kr-red-deep); }
+  /* лайтбокс — увеличенный просмотр скриншота по клику */
+  .kr-lightbox {
+    position: fixed; inset: 0; background: rgba(11,23,48,.92); display: none;
+    align-items: center; justify-content: center; z-index: 999; padding: 24px;
+  }
+  .kr-lightbox.kr-open { display: flex; }
+  .kr-lightbox img { max-width: 100%; max-height: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+  .kr-lightbox-close {
+    position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 999px;
+    background: rgba(255,255,255,.15); color: #fff; display: grid; place-items: center;
+    font-size: 22px; line-height: 1; cursor: pointer; border: none;
+  }
 </style>
 
 <div class="kr-review">
@@ -50,9 +67,42 @@
     <p>За первый семестр она заплатила всего $400.</p>
   </div>
 
+  <div class="kr-review-media">
+    <div class="kr-review-media-label">Скриншоты переписки</div>
+    <div class="kr-review-shots">
+      <img src="https://static.tildacdn.pro/tild3861-3765-4063-a466-336162373039/photo_61498172432823.jpg" alt="Скриншот переписки Евы">
+      <img src="https://static.tildacdn.pro/tild6566-6337-4166-a534-353964313134/photo_61498172432823.jpg" alt="Скриншот переписки Евы">
+      <img src="https://static.tildacdn.pro/tild3366-3361-4332-a531-336164386264/photo_61498172432823.jpg" alt="Скриншот переписки Евы">
+    </div>
+  </div>
+
   <div class="kr-review-cta">
     <div class="kr-review-cta-text">Хотите так же — со скидкой и без лишних нервов?</div>
     <a href="#popup1" class="kr-review-btn">Оставить заявку</a>
   </div>
 </div>
+
+<div class="kr-lightbox" id="kr-lightbox-eva">
+  <button class="kr-lightbox-close" type="button" aria-label="Закрыть">×</button>
+  <img src="" alt="">
+</div>
+
+<script>
+(function(){
+  var lightbox = document.getElementById('kr-lightbox-eva');
+  if (!lightbox) return;
+  var lightboxImg = lightbox.querySelector('img');
+  document.querySelectorAll('.kr-review-shots img').forEach(function(img){
+    img.addEventListener('click', function(){
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('kr-open');
+    });
+  });
+  lightbox.addEventListener('click', function(){
+    lightbox.classList.remove('kr-open');
+    lightboxImg.src = '';
+  });
+})();
+</script>
 </body></html>
